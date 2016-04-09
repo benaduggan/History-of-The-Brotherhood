@@ -3,8 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
-
+    @notes = Note.find_by_sql("SELECT * FROM notes")
     render json: @notes
   end
 
