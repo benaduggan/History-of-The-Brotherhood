@@ -1,22 +1,30 @@
 # Ben Duggan and Adam Pogwizd
 
-# Proposal:
+# The Proposal
 
-All of the information that you included in the Pre-Proposal document (be sure to update your proposal to address any issues raised by the instructor)
+## The Idea
 
-What is the goal of your application? What problem will it try to solve? The goal of this web application would be to preserve the history of Samuel Morris Hall and allow individuals to connect with friends from the past and discover new connections.
+It started out with a simple discovery. My DA had lived in my room for three years before I had even stepped foot inside of it! He showed me a hidden token that he had left in the room from his time. This inspired me to start developing a model of what this application could look like, and how it might be used by alumni and current students to connect over a shared experience. I started talking to an alumnus of the Brotherhood who currently works in Zondervan Library. He mentioned having a similar idea and we have continued to discuss the scope of this project and how it could be used to preserve the history of the Brotherhood and allow individuals to connect, remember the events from the past, and discover new information about the floor and its members that they had not known before.
 
-We do not really consider this project to be solving a problem, but it is a fun project that will help connect people in a unique way.
+## The Scope
 
-Why is this application relevant/meaningful? Who may use it and why? What are some difficulties associated with your project?
+Since this application is based around a shared history, we are developing the project with alumni and current students in mind.
 
-It seems like the first question people ask you once you have discovered you both have been to Taylor is what dorm you lived in. Since there is so much camaraderie between people in this way, it seems like it would be cool to create a place where people can look back on the history and to current state of where they once lived. Alumni, current students, as well as prospective students could benefit from such an application. Alumni might be interested in see who the new kids on the block are. Current students could use it as a platform to keep in contact with other floor members or check up on the history of their own rooms. The prospective students could use it to connect with current students and see if they would like to live there.
+We believe that alumni would be interested in reminiscing on their past experience on the floor. They also may be interested in seeing who the new kids on the block are and what has happened to the floor since they have left.
 
-There may be difficulties with data integrity when associating students and rooms together for different time periods.
+Current students could use this application as a platform to keep track of events as they happen to ensure that the information will not be lost. They also might be interested in exploring the history of the Brotherhood and who lived in their room in the past.
 
-Additionally, it may be difficult to derive eight meaningful tables within the scope of this project.
+## The Challenges
 
-Does a similar application already exist? If so, how is your application going to be different from it?     A similar application does not exist explicitly for Taylor. One exists for Harvard, but we plan on improving on it. Ours will be different in that it will be more intuitively designed and interactive. The existing application is mainly a list that is searched through.
+We suspect that there may be challenges maintaining data integrity when it comes to time ranges that should not overlap. For example, only two people should be allowed to live in a room for a given semester, yet this data will be entered in as a time range.
+
+We also expect designing a intuitive and elegant interface for displaying time-based data could be a challenge, especially when thinking about search.
+
+We want the add the ability to attach pictures to all of the entities as well, which may present a data modeling challenge.
+
+## The Alternatives
+
+A similar application does exist for Harvard University, but it is basically a simple list students who have lived in dorms throughout the entire campus. Our application, however, will be intentionally designed for documenting a living history, and connecting individuals through an intuitively designed, interactive, and fun experience.
 
 # Specification:
 
