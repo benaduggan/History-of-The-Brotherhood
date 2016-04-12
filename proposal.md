@@ -4,7 +4,7 @@
 
 ## The Idea
 
-It started out with a simple discovery. My DA had lived in my room for three years before I had even stepped foot inside of it! He showed me a hidden token that he had left in the room from his time. This inspired me to start developing a model of what this application could look like, and how it might be used by alumni and current students to connect over a shared experience. I started talking to an alumnus of the Brotherhood who currently works in Zondervan Library. He mentioned having a similar idea and we have continued to discuss the scope of this project and how it could be used to preserve the history of the Brotherhood and allow individuals to connect, remember the events from the past, and discover new information about the floor and its members that they had not known before.
+It started out with a simple discovery. My DA had lived in my room for three years before I had even stepped foot inside of it! He showed me a hidden token that he had left in the room from his time. This inspired me to start developing a rudimentary model of what this application could look like, and how it might be used by alumni and current students to connect over a shared experience. I started talking to an alumnus of the Brotherhood who currently works in Zondervan Library. He mentioned having a similar idea and we have continued to discuss the scope of this project and how it could be used to preserve the history of the Brotherhood and allow individuals to connect, remember the events from the past, and discover new information about the floor and its members that they had not known before.
 
 ## The Scope
 
