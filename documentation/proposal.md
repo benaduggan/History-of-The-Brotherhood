@@ -28,8 +28,6 @@ A similar application does exist for Harvard University, but it is basically a s
 
 # Specification:
 
-A list and description of all the features that you will include in your application (include optional features that you plan to implement if you have time)
-
 ## Features
 
 - Develop REST API Endpoints to allow general CRUD operations on the entities described in the ERD
@@ -47,70 +45,60 @@ A list and description of all the features that you will include in your applica
 - Ability to attach other forms of media
 - Enhance design to include events, artifacts, messaging and notification functionality
 
-# ER Diagram:
+# ER Diagram Explanation
 
-Do I put a picture here? Can I put a picture here?
+## Entities
 
-## ER Explanation
-
-### Entities
-
-#### Person
+### Person
 
 The person entity represents someone who has lived on the Brotherhood at some point in history
 
-#### Permission
+### Permission
 
 The represents a function to enable manipulation of data in this application
 
-#### Picture
+### Picture
 
 Allows individuals to document history and explain what it is
 
-#### Position
+### Position
 
 This represents a persons nickname on the floor or their role if applicable
 
-#### User
+### User
 
 Represents a individuals interactive with the application, not necessarily related to the person entity
 
-#### Floor
+### Floor
 
 Represents data attached the Brotherhood as a whole.
 
-#### Room
+### Room
 
 Represents a physical location within Samuel Morris Hall
 
-### Relationships
+## Relationships
 
-#### Person (assigned) Position
+### Person (assigned) Position
 
 This is meant to represent the nickname of a floor member, or their role such as the Phubs. So that the history can be consolidated and unique to each individual
 
-#### Person (lives in) Room
+### Person (lives in) Room
 
 This records how long and when a person lived in a given room
 
-#### Person (is) User
+### Person (is) User
 
 An optional relationship representing the relationship between a User of the application and a Person as a member of the Brotherhood
 
-#### Floor (contains) Room
+### Floor (contains) Room
 
 This is a simple relationship showing that Rooms exist on a given Floor. There will only ever be one in the scope of this system, but we think it is necessary for recording other meta data in the application.
 
-#### User (has) Permission
+### User (has) Permission
 
 This represents the abilities that users possess to view and operate on the data of the application
 
-#### Person User Room Floor (have) Picture
+### Person User Room Floor (have) Picture
 
 This relationship allows Users to document pictures of other entities within the application
-
-# Database Schema:
-
-The result of mapping your ER diagram into a database schema (mapping algorithm is described in Chapter 9, 9.1 of the textbook)
-
-Picture? Enhanced ERD?
