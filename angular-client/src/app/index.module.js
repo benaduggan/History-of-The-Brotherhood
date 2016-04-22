@@ -12,7 +12,8 @@
       'ui.router',
       'ngMaterial',
       'toastr',
-      'broho.static'
+      'broho.static',
+      'broho.floor'
     ]);
 
 })();
