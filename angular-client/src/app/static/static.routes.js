@@ -6,19 +6,19 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider) {
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/static/home.html',
+        templateUrl: 'app/static/home.html'
       })
       .state('version', {
         url: '/version',
-        templateUrl: 'app/static/version.html',
+        templateUrl: 'app/static/version.html'
       })
       .state('credits', {
         url: '/credits',
-        templateUrl: 'app/static/credits.html',
+        templateUrl: 'app/static/credits.html'
       });
   }
 

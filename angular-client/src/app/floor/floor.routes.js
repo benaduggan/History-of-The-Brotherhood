@@ -6,18 +6,18 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider) {
     $stateProvider
       .state('floorList', {
         url: '/floor/',
         templateUrl: 'app/floor/floorList.html',
-        controller: 'FloorListController',
+        controller: 'FloorListController as vm'
       })
       .state('floorDetail', {
         url: '/floor/:id/',
         templateUrl: 'app/floor/floorDetail.html',
-        controller: 'FloorDetailController',
+        controller: 'FloorDetailController as vm'
       });
-    };
+    }
 
 })();

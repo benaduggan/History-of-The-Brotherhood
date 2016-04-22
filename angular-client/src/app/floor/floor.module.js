@@ -4,6 +4,7 @@
     angular
         .module('broho.floor', [
             'ui.router',
-            'ngMaterial'
+            'ngMaterial',
+            'broho.data'
         ]);
 })();
