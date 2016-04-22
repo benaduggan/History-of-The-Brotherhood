@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('angularClient')
+    .module('broho')
     .config(config);
 
   /** @ngInject */

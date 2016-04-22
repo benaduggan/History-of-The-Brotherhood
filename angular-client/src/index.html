@@ -1,8 +1,8 @@
 <!doctype html>
-<html ng-app="angularClient">
+<html ng-app="broho">
   <head>
     <meta charset="utf-8">
-    <title>angularClient</title>
+    <title>broho</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -46,6 +46,14 @@
     <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
     <!-- inject:js -->
     <!-- js files will be automatically insert here -->
+    <script src="app/index.module.js"></script>
+    <script src="app/index.route.js"></script>
+
+    <script src="app/static/static.module.js"></script>
+    <script src="app/static/static.routes.js"></script>
+
+
+    <script src="app/components/navbar.directive.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->

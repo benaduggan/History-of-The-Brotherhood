@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('angularClient')
+    .module('broho')
     .directive('navbar', navbar);
 
   /** @ngInject */
@@ -21,8 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(moment) {
-      var vm = this;
+    function NavbarController() {
 
     }
   }

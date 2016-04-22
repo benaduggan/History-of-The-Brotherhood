@@ -2,18 +2,16 @@
   'use strict';
 
   angular
-    .module('angularClient')
+    .module('broho')
     .config(routerConfig);
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      });
+      // .state('blah', {
+        // url: '/',
+        // template: 'app/static/main.html',
+      // });
 
     $urlRouterProvider.otherwise('/');
   }

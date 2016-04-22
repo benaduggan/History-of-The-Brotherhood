@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('angularClient')
+    .module('broho')
     .constant('malarkey', malarkey)
     .constant('moment', moment);
 
