@@ -1,27 +1,45 @@
 <md-sidenav style="display: inline-block"
             md-is-locked-open="$mdMedia('gt-xs')"
             md-component-id="sidenav" layout="column" layout-fill>
+
     <md-toolbar layout="column" layout-align="center start"
                 class="md-medium-tall" layout-padding>
-        <a ng-href="#/">
-          <img src='http://dummyimage.com/200x55/000/fff.png'/>
+        <a ui-sref="home">
+          <img src='http://dummyimage.com/200x55/000/fff.png'/> <!-- brand logo -->
         </a>
     </md-toolbar>
 
     <md-content layout="column" flex>
+
         <md-toolbar md-scroll-shrink class="md-toolbar-tools md-accent">
           <h2 layout='row' layout-align='space-between' flex>login button</h2>
         </md-toolbar>
 
         <md-list>
-            <md-list-item ng-click="vm.navigate('catalog')">
-                <md-icon md-svg-src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="add-shopping-cart"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></g></svg>'
-                </md-icon>
+          <md-list-item ui-sref="Positions">
+              <md-icon md-svg-src="assets/images/icons/person-pin.svg"
+                class="smaller"></md-icon>
+              <p>Positions</p>
+          </md-list-item>
 
-                <p>
-                    Catalog
-                </p>
-            </md-list-item>
+          <md-list-item ui-sref="People">
+              <md-icon md-svg-src="assets/images/icons/person.svg"
+                class="smaller"></md-icon>
+              <p>People</p>
+          </md-list-item>
+
+          <md-list-item ui-sref="Rooms">
+              <md-icon md-svg-src='assets/images/icons/room.svg'
+                class="smaller"></md-icon>
+              <p>Rooms</p>
+          </md-list-item>
+
+          <md-list-item ui-sref="Floor">
+              <md-icon md-svg-src='assets/images/icons/floor.svg'
+                class="smaller"></md-icon>
+              <p>Floor</p>
+          </md-list-item>
+
 
         </md-list>
 
@@ -29,34 +47,21 @@
 
         <md-divider></md-divider>
 
-        <!-- <md-list class="md-body-1">
-            <md-list-item ng-click="vm.giveFeedback($event)">
-                <md-icon md-svg-src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="add-shopping-cart"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></g></svg>'
-                         class="smaller"></md-icon>
-
-                <p>Provide Feedback</p>
-            </md-list-item>
-
-            <md-list-item ng-click="vm.navigate('credits')">
-                <md-icon md-svg-src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="add-shopping-cart"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></g></svg>'
+        <md-list>
+           <md-list-item ui-sref="credits">
+                <md-icon md-svg-src="assets/images/icons/credits.svg"
                          class="smaller"></md-icon>
 
                 <p>Credits</p>
             </md-list-item>
 
-            <md-list-item ng-click="vm.navigate('privacy')">
-                <md-icon md-svg-src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="add-shopping-cart"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></g></svg>'
-                         class="smaller"></md-icon>
 
-                <p>Privacy</p>
-            </md-list-item>
-
-            <md-list-item ng-click="vm.navigate('version')">
-                <md-icon md-svg-src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g id="add-shopping-cart"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></g></svg>'
+            <md-list-item ui-sref="version">
+                <md-icon md-svg-src="assets/images/icons/info.svg"
                          class="smaller"></md-icon>
 
                 <p>Version</p>
             </md-list-item>
-        </md-list> -->
+        </md-list>
     </md-content>
 </md-sidenav>

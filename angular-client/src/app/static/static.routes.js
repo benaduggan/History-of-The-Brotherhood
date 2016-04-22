@@ -15,6 +15,10 @@
       .state('version', {
         url: '/version',
         templateUrl: 'app/static/version.html',
+      })
+      .state('credits', {
+        url: '/credits',
+        templateUrl: 'app/static/credits.html',
       });
   }
 
