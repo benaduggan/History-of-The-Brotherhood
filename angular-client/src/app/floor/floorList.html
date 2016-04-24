@@ -1,6 +1,40 @@
 <h1>Floor List</h1>
 
-<div ng-repeat='floor in vm.floors'>
-    <p>Name: {{floor.name}}</p>
-    <p>Description: {{floor.description}}</p>
-</div>
+  <md-content class="md-padding" layout-xs="column" layout="row">
+    <div layout="column" flex>
+
+      <md-card ng-repeat='floor in vm.floors'>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ floor.name }}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"><img src="assets/images/angular-material.png"/></div>
+          </md-card-title-media>
+        </md-card-title>
+
+        <md-content layout-padding layout-wrap>
+            {{ floor.description }}
+          </md-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="vm.updateFloor(floor)">{{ floor.editing ? "Save" : "Update"}}</md-button>
+          <md-button ng-click="vm.deleteFloor(floor)">{{ floor.delete ? "Are you sure?" : "Delete" }}</md-button>
+        </md-card-actions>
+      </md-card>
+
+      <md-card ng-click='vm.createFloor(floor)' layout='row'>
+        <md-card-title layout-align="space-between">
+          <md-card-title-text>
+            <span class="md-headline">Create new floor</span>
+          </md-card-title-text>
+        </md-card-title>
+
+
+        <md-content ng-if="vm.create" layout-padding layout-wrap>
+          This will be the create floor form
+        </md-content>
+      </md-card>
+
+
+    </div>
+  </md-content>

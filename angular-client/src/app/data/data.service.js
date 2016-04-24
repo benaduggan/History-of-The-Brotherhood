@@ -5,6 +5,7 @@
         .module('broho.data')
         .factory('dataService', dataService);
 
+
     function dataService($http, DATA_API_BASE_URL) {
         var service = {
                 get: get,
