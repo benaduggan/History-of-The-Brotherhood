@@ -11,7 +11,7 @@ class SuperController < ActionController::API
 
   # GET /todos/1
   def show
-    render json: @model_instance
+    render json: @model_instance.first
   end
 
   # # POST /todos
@@ -37,7 +37,7 @@ class SuperController < ActionController::API
 
     if update_model(params[:id], values_a)
       set_model_instance()
-      render json: @model_instance, status: :ok
+      render json: @model_instance.first, status: :ok
     else
       render json: "problem", status: :unprocessable_entity
     end
