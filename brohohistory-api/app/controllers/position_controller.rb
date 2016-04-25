@@ -1,5 +1,5 @@
 class PositionController < SuperController
   @@model_name = 'position'
-  @@model_fields = ['id', "title", "description", "recurring"]
+  @@model_fields = ["title", "description", "recurring"]
 
 end

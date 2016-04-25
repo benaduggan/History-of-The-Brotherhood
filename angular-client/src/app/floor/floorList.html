@@ -1,7 +1,7 @@
 
   <md-content class="md-padding">
     <div layout="column" flex>
-      <md-card ng-repeat='floor in vm.floors'>
+      <md-card ng-repeat="floor in vm.floors | orderBy:'name'">
         <form name="floorUpdateForm">
 
           <md-card-title>
@@ -20,10 +20,6 @@
               <div class="md-media-sm card-media"><img src="assets/images/angular-material.png"/></div>
             </md-card-title-media>
           </md-card-title>
-
-
-
-
 
           <md-content layout-padding layout-wrap>
               <p ng-if='!floor.edit'>{{ floor.description }}</p>
