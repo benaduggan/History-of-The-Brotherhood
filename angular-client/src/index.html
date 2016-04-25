@@ -24,17 +24,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <navbar class="md-whiteframe-z2"></navbar>
+    <navbar></navbar>
 
-    <main layout="column" flex>
-          <md-toolbar class="md-toolbar-tools md-medium-tall">
-              <header class="md-display-1" flex>The Living History of the Brotherhood</header>
-              <span flex></span>
-          </md-toolbar>
+    <mainBody layout="column" flex>
 
-          <div ui-view></div>
-          <span flex></span>
-    </main>
+    </mainBody>
 
 
     <!-- build:js(src) scripts/vendor.js -->
@@ -50,6 +44,7 @@
     <script src="app/index.route.js"></script>
 
     <script src="app/components/navbar.directive.js"></script>
+    <script src="app/components/mainbody.directive.js"></script>
 
     <script src="app/data/data.module.js"></script>
     <script src="app/data/data.service.js"></script>

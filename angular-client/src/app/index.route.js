@@ -13,7 +13,7 @@
         // template: 'app/static/main.html',
       // });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
   }
 
 })();

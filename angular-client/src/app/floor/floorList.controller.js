@@ -5,7 +5,7 @@
         .module('broho.floor')
         .controller('FloorListController', FloorListController);
 
-    function FloorListController(dataService) {
+    function FloorListController($rootScope, dataService) {
         var vm = this;
         vm.floors = [];
         vm.form = {};
@@ -25,6 +25,7 @@
 
         function activate() {
           vm.getFloors();
+          $rootScope.$broadcast('setTitle', 'Floor List');
         }
 
         function getFloors() {
@@ -35,7 +36,7 @@
 
         function updateFloor(floor) {
             if(floor.edit){
-              dataService.put('floor/' + floor.id + '/', floor).then(function(promise){
+              dataService.put('floor/' + floor.id + '/', floor).then(function(){
                 vm.activate();
               })
               floor.edit = false; // on success
@@ -46,7 +47,7 @@
 
         function deleteFloor(floor) {
             if(floor.delete){
-              dataService.delete('floor/' + floor.id + '/').then(function(promise){
+              dataService.delete('floor/' + floor.id + '/').then(function(){
                 floor.delete = false; // on success pop from list
                 vm.activate();
               });
@@ -56,9 +57,8 @@
         }
 
         function createFloor() {
-            console.log(vm.create);
             if(vm.create){
-              dataService.post('floor/', vm.form).then(function (response) {
+              dataService.post('floor/', vm.form).then(function () {
                 vm.create = false;
                 vm.form = {};
                 vm.activate();

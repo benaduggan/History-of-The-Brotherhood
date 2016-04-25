@@ -1,8 +1,6 @@
-<h1>Floor List</h1>
 
-  <md-content class="md-padding" layout-xs="column" layout="row">
+  <md-content class="md-padding">
     <div layout="column" flex>
-
       <md-card ng-repeat='floor in vm.floors'>
         <form name="floorUpdateForm">
 
@@ -50,9 +48,9 @@
 
 
       <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Create new floor</span>
+        <md-card-title ng-if='!vm.create'>
+          <md-card-title-text layout='row' layout-align='center'>
+            <md-button ng-click='vm.createFloor(floor)' style='width: 15%;' class="md-headline md-raised md-primary">Create new floor</md-button>
           </md-card-title-text>
         </md-card-title>
 
@@ -84,9 +82,6 @@
           </form>
         </md-content>
 
-        <md-card-actions ng-if='!vm.create' layout="row" layout-align="end center">
-          <md-button ng-click='vm.createFloor(floor)' class="md-primary">Create new floor</md-button>
-        </md-card-actions>
       </md-card>
 
     </div>
