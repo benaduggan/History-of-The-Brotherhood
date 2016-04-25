@@ -20,7 +20,6 @@ class SuperController < ActionController::API
     @@model_fields.each do |field|
         values_a.append([field, params[field]])
     end
-
     if save_model(values_a)
       render json: values_a, status: :created
     else
@@ -55,14 +54,16 @@ class SuperController < ActionController::API
     end
 
     def save_model(values)
-      query = "INSERT INTO #{@@model_name} VALUES ("
+      field_names_string = ""
+      field_values_string = ""
       values.each do |value|
         if value[1].class == String
             value[1] = "'" + value[1] + "'"
         end
-        query += value[1].to_s + ', '
+        field_values_string += value[1].to_s + ', '
+        field_names_string += value[0].to_s + ', '
       end
-      query = query[0..-3] + ');'
+      query = "INSERT INTO #{@@model_name} (#{field_names_string[0..-3]}) VALUES (#{field_values_string[0..-3]});"
       return ActiveRecord::Base.connection.execute(query)
     end
 

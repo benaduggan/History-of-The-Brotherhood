@@ -8,17 +8,18 @@
     function FloorListController(dataService) {
         var vm = this;
         vm.floors = [];
-        vm.editing = false;
+        vm.form = {};
         vm.delete = false;
         vm.create = false;
 
+        vm.activate = activate;
         vm.getFloors = getFloors;
         vm.createFloor = createFloor;
         vm.updateFloor = updateFloor;
         vm.deleteFloor = deleteFloor;
 
 
-        activate();
+        vm.activate();
 
         ///////////////////////////////////////////////////////////////////////
 
@@ -29,40 +30,39 @@
         function getFloors() {
           dataService.get('floor/').then(function(promise){
             vm.floors = promise.data;
-            console.log(vm.floors)
           })
         }
 
         function updateFloor(floor) {
-            if(floor.editing){
+            if(floor.edit){
               dataService.put('floor/' + floor.id + '/', floor).then(function(promise){
-                console.log(promise);
+                vm.activate();
               })
-              console.log("save floor " + JSON.stringify(floor))
-              floor.editing = false; // on success
+              floor.edit = false; // on success
             } else {
-              floor.editing = true;
+              floor.edit = true;
             }
         }
 
         function deleteFloor(floor) {
             if(floor.delete){
               dataService.delete('floor/' + floor.id + '/').then(function(promise){
-                console.log("Delete floor success");
-              },
-              function(error){
-                console.log(error);
+                floor.delete = false; // on success pop from list
+                vm.activate();
               });
-              floor.delete = false; // on success pop from list
             } else {
               floor.delete = true;
             }
         }
 
         function createFloor() {
+            console.log(vm.create);
             if(vm.create){
-              console.log("Create floor")
-              vm.create = false; // on success pop from list
+              dataService.post('floor/', vm.form).then(function (response) {
+                vm.create = false;
+                vm.form = {};
+                vm.activate();
+              })
             } else {
               vm.create = true;
             }

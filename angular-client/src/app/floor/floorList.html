@@ -4,26 +4,53 @@
     <div layout="column" flex>
 
       <md-card ng-repeat='floor in vm.floors'>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{ floor.name }}</span>
-          </md-card-title-text>
-          <md-card-title-media>
-            <div class="md-media-sm card-media"><img src="assets/images/angular-material.png"/></div>
-          </md-card-title-media>
-        </md-card-title>
+        <form name="floorUpdateForm">
 
-        <md-content layout-padding layout-wrap>
-            {{ floor.description }}
-          </md-content>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button ng-click="vm.updateFloor(floor)">{{ floor.editing ? "Save" : "Update"}}</md-button>
-          <md-button ng-click="vm.deleteFloor(floor)">{{ floor.delete ? "Are you sure?" : "Delete" }}</md-button>
-        </md-card-actions>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline" ng-if='!floor.edit'>{{ floor.name }}</span>
+
+                  <md-input-container ng-if='floor.edit' class="md-block">
+                    <label>Floor Name</label>
+                    <input name="name" ng-model="floor.name" required>
+                    <div ng-messages="floorUpdateForm.name.$error">
+                      <div ng-message="required">This field is required.</div>
+                    </div>
+                  </md-input-container>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-sm card-media"><img src="assets/images/angular-material.png"/></div>
+            </md-card-title-media>
+          </md-card-title>
+
+
+
+
+
+          <md-content layout-padding layout-wrap>
+              <p ng-if='!floor.edit'>{{ floor.description }}</p>
+
+              <md-input-container ng-if='floor.edit' class="md-block">
+                <label>Description</label>
+                <input md-maxlength="200" required md-no-asterisk name="description" ng-model="floor.description">
+                <div ng-messages="floorUpdateForm.description.$error">
+                  <div ng-message="required">This field is required.</div>
+                  <div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
+                </div>
+              </md-input-container>
+            </md-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="vm.updateFloor(floor)" class="md-primary">{{ floor.edit ? "Save" : "Update"}}</md-button>
+
+            <md-button ng-if='floor.edit' ng-click="floor.edit = false" class="md-warn">Cancel</md-button>
+            <md-button ng-if='!floor.edit' ng-click="vm.deleteFloor(floor)" class="md-warn">{{ floor.delete ? "Are you sure?" : "Delete" }}</md-button>
+          </md-card-actions>
+        </form>
       </md-card>
 
-      <md-card ng-click='vm.createFloor(floor)' layout='row'>
-        <md-card-title layout-align="space-between">
+
+      <md-card>
+        <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Create new floor</span>
           </md-card-title-text>
@@ -31,10 +58,36 @@
 
 
         <md-content ng-if="vm.create" layout-padding layout-wrap>
-          This will be the create floor form
-        </md-content>
-      </md-card>
+          <form name="floorForm">
+            <md-input-container class="md-block">
+              <label>Floor Name</label>
+              <input name="name" ng-model="vm.form.name" required>
+              <div ng-messages="floorForm.name.$error">
+                <div ng-message="required">This field is required.</div>
+              </div>
+            </md-input-container>
 
+
+            <md-input-container class="md-block">
+              <label>Description</label>
+              <input md-maxlength="200" required md-no-asterisk name="description" ng-model="vm.form.description">
+              <div ng-messages="floorForm.description.$error">
+                <div ng-message="required">This field is required.</div>
+                <div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
+              </div>
+            </md-input-container>
+
+            <div>
+              <md-button ng-click="vm.createFloor()" class="md-primary">{{ floor.create ? "Saving..." : "Create" }}</md-button>
+              <md-button ng-click="vm.create = false" class="md-warn">Cancel</md-button>
+            </div>
+          </form>
+        </md-content>
+
+        <md-card-actions ng-if='!vm.create' layout="row" layout-align="end center">
+          <md-button ng-click='vm.createFloor(floor)' class="md-primary">Create new floor</md-button>
+        </md-card-actions>
+      </md-card>
 
     </div>
   </md-content>
