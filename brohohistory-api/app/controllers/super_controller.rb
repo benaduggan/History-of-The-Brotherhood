@@ -1,5 +1,6 @@
 class SuperController < ActionController::API
   before_action :set_model_instance, only: [:show, :update, :destroy]
+
   @@model_fields = []
   @@model_name = ""
 
@@ -11,10 +12,14 @@ class SuperController < ActionController::API
 
   # GET /todos/1
   def show
-    render json: @model_instance.first
+    if check_id_exists(@@model_name ,params[:id])
+      render json: @model_instance.first
+    else
+      render json: {"errors" => ["The requested resource was not found"]}, status: :not_found
+    end
   end
 
-  # # POST /todos
+  # POST /todos
   def create
     values_a = []
     @@model_fields.each do |field|
@@ -53,6 +58,12 @@ class SuperController < ActionController::API
       @model_instance = ActiveRecord::Base.connection.execute(query)
     end
 
+    def check_id_exists(model_name, id)
+      query = "SELECT id FROM #{model_name} WHERE id = #{id}"
+      return ActiveRecord::Base.connection.execute(query).to_a.length > 0
+    end
+
+
     def save_model(values)
       field_names_string = ""
       field_values_string = ""
@@ -81,20 +92,4 @@ class SuperController < ActionController::API
       query = query[0..-3] + " " + where
       return ActiveRecord::Base.connection.execute(query)
     end
-
-
 end
-
-
-
-  #
-  # private
-  #   # Use callbacks to share common setup or constraints between actions.
-  #   def set_todo
-  #     @todo = Todo.find(params[:id])
-  #   end
-  #
-  #   # Only allow a trusted parameter "white list" through.
-  #   def todo_params
-  #     params.require(:todo).permit(:title, :completed, :order)
-  #   end

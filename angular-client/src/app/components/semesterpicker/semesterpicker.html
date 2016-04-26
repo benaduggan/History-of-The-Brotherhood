@@ -1,0 +1,25 @@
+<div layout='row' layout-padding>
+  <md-input-container class="md-block" flex>
+    <label>Semester</label>
+    <md-select ng-model="vm.semester_model.semester" name="start_semester" required>
+      <md-option ng-repeat="semester in vm.semesters" value="{{semester}}">
+        {{semester}}
+      </md-option>
+    </md-select>
+    <div ng-messages="vm.form.start_semester.$error">
+      <div ng-message="required">This field is required.</div>
+    </div>
+  </md-input-container>
+
+  <md-input-container class="md-block" flex>
+    <label>Year</label>
+    <md-select ng-model="vm.semester_model.year" name="start_semester" required>
+      <md-option ng-repeat="year in vm.years" value="{{year}}">
+        {{year}}
+      </md-option>
+    </md-select>
+    <div ng-messages="vm.form.start_semester.$error">
+      <div ng-message="required">This field is required.</div>
+    </div>
+  </md-input-container>
+</div>

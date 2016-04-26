@@ -36,7 +36,7 @@
 
 		function updatePosition(position) {
 			if(position.edit){
-				if(angular.is_undefined(position.recurring)) {
+				if(angular.isUndefined(position.recurring)) {
 					position.recurring = 0;
 				} else {
 					position.recurring = 1;

@@ -1,5 +1,5 @@
 class PositionController < SuperController
-  before_action :set_class_variables
+  prepend_before_action :set_class_variables
 
   def set_class_variables
     @@model_name = 'position'

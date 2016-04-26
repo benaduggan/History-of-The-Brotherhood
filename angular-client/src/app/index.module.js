@@ -14,6 +14,7 @@
       'toastr',
       'broho.static',
       'broho.position',
+      'broho.person',
       'broho.floor'
     ]);
 
