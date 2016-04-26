@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   resources :floor
 
+  resources :room
+
 end

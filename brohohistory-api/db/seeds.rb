@@ -31,3 +31,5 @@ def create_rooms
     ActiveRecord::Base.connection.execute(query)
   end
 end
+
+create_rooms()
