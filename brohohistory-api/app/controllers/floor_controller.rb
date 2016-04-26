@@ -1,5 +1,8 @@
 class FloorController < SuperController
-  @@model_name = 'floor'
-  @@model_fields = ['name', 'description']
+  before_action :set_class_variables
 
+  def set_class_variables
+    @@model_name = 'floor'
+    @@model_fields = ['name', 'description']
+  end
 end
