@@ -1,0 +1,97 @@
+
+<md-content class="md-padding">
+  <div layout="column" flex>
+    <md-card ng-repeat="position in vm.positions | orderBy:'title'">
+      <form name="positionUpdateForm">
+
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" ng-if='!position.edit'>{{ position.title }}</span>
+            <md-input-container ng-if='position.edit' class="md-block">
+              <label>Position Title</label>
+              <input name="name" ng-model="position.title" required>
+              <div ng-messages="positionUpdateForm.title.$error">
+                <div ng-message="required">This field is required.</div>
+              </div>
+            </md-input-container>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-sm card-media"><img src="assets/images/angular-material.png"/></div>
+          </md-card-title-media>
+        </md-card-title>
+
+        <md-content layout-padding layout-wrap>
+          <p ng-if='!position.edit'>{{ position.description }}</p>
+
+          <md-input-container ng-if='position.edit' class="md-block">
+            <label>Description</label>
+            <input md-maxlength="200" required md-no-asterisk name="description" ng-model="position.description">
+            <div ng-messages="positionUpdateForm.description.$error">
+              <div ng-message="required">This field is required.</div>
+              <div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-disabled='!position.edit' ng-model="position.recurring" name="recurring" required ng-true-value="1">
+              Recurring Position?
+            </md-checkbox>
+          </md-input-container>
+
+
+        </md-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button ng-click="vm.updatePosition(position)" class="md-primary">{{ position.edit ? "Save" : "Update"}}</md-button>
+
+          <md-button ng-if='position.edit' ng-click="position.edit = false" class="md-warn">Cancel</md-button>
+          <md-button ng-if='!position.edit' ng-click="vm.deletePosition(position)" class="md-warn">{{ position.delete ? "Are you sure?" : "Delete" }}</md-button>
+        </md-card-actions>
+      </form>
+    </md-card>
+
+
+    <md-card>
+      <md-card-title ng-if='!vm.create'>
+        <md-card-title-text layout='row' layout-align='center'>
+          <md-button ng-click='vm.createPosition(position)' style='width: 15%;' class="md-headline md-raised md-primary">Create new position</md-button>
+        </md-card-title-text>
+      </md-card-title>
+
+
+      <md-content ng-if="vm.create" layout-padding layout-wrap>
+        <form name="positionForm">
+          <md-input-container class="md-block">
+            <label>Position Title</label>
+            <input name="title" ng-model="vm.form.title" required>
+            <div ng-messages="positionForm.title.$error">
+              <div ng-message="required">This field is required.</div>
+            </div>
+          </md-input-container>
+
+
+          <md-input-container class="md-block">
+            <label>Description</label>
+            <input md-maxlength="200" required md-no-asterisk name="description" ng-model="vm.form.description">
+            <div ng-messages="positionForm.description.$error">
+              <div ng-message="required">This field is required.</div>
+              <div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <md-checkbox ng-model="vm.form.recurring" name="recurring" required ng-true-value="1" ng-false-value="0">
+              Recurring Position?
+            </md-checkbox>
+          </md-input-container>
+
+          <div>
+            <md-button ng-click="vm.createPosition()" class="md-primary">{{ position.create ? "Saving..." : "Create" }}</md-button>
+            <md-button ng-click="vm.create = false" class="md-warn">Cancel</md-button>
+          </div>
+        </form>
+      </md-content>
+
+    </md-card>
+
+  </div>
+</md-content>

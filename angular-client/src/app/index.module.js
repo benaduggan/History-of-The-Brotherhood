@@ -13,6 +13,7 @@
       'ngMaterial',
       'toastr',
       'broho.static',
+      'broho.position',
       'broho.floor'
     ]);
 
