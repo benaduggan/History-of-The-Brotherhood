@@ -9,7 +9,7 @@
 
 def get_or_create_floor
   floor_id = ActiveRecord::Base.connection.execute("SELECT id FROM floor WHERE name = 'The Brotherhood'")
-  if floor_id.nil?
+  if floor_id.first.nil?
     query = "INSERT INTO floor (name, description) VALUES ('The Brotherhood', 'An awesome place to live')"
     x = ActiveRecord::Base.connection.execute(query)
     return x.first[0]
