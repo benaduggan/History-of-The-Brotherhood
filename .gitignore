@@ -36,4 +36,4 @@ build/
 .rvmrc
 
 brohohistory-api/config/database.yml
-angular-client/src/app/data/module.js
+angular-client/src/app/data/data.module.js
