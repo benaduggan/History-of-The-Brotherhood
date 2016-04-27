@@ -52,6 +52,12 @@ class SuperController < ActionController::API
     return ActiveRecord::Base.connection.execute("DELETE FROM #{@@model_name} WHERE id = #{params['id']}")
   end
 
+  protected
+    def check_token
+      token_value = request.headers['token']
+      return ActiveRecord::Base.connection.execute("SELECT * FROM token WHERE value = '#{token_value}'").first
+    end
+
   private
     def set_model_instance
       query = "SELECT * FROM #{@@model_name} WHERE id = #{params[:id]}"
