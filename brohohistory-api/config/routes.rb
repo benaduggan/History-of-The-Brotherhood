@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :person_position
 
   resources :person_room
+  get '/map/:semester/:year', to: 'person_room#showMap', as: 'showMap'
+
 
   resources :picture
 
