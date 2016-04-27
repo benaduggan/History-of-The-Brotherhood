@@ -1,11 +1,8 @@
 <md-content class="md-padding">
   <div layout="column" flex>
 
-
-
-    <md-card ng-repeat="person in vm.persons | orderBy:'title'">
+    <md-card ng-repeat="person in vm.persons | orderBy:'first_name'">
       <form name="personUpdateForm">
-
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline" ng-if='!person.edit'>{{ person.first_name + " " + person.last_name}}</span>
@@ -33,6 +30,24 @@
             <div class="md-media-sm card-media"><img src="assets/images/angular-material.png"/></div>
           </md-card-title-media>
         </md-card-title>
+
+        <md-content layout-padding layout-wrap ng-if='!person.edit'>
+
+            <label for='start_class' class="md-title">Start Semester</label>
+            <p name='start_class'>{{ person.start_class }}</p>
+
+            <div layout="row">
+                <div layout='column' flex>
+                    <label for='start_semester' class="md-title">Start Semester</label>
+                    <p name='start_semester'>{{ person.start_semester }}</p>
+                </div>
+
+                <div layout='column' flex>
+                    <label for='end_semester' class="md-title">End Semester</label>
+                    <p flex>{{ person.end_semester }}</p>
+                </div>
+            </div>
+        </md-content>
 
         <md-content layout-padding layout-wrap ng-if='person.edit'>
           <md-input-container class="md-block" flex>
