@@ -1,0 +1,15 @@
+<!-- <form>
+  <label>Email</label>
+  <input ng-model='vm.form.email'/>
+
+  <label>Password</label>
+  <input ng-model='vm.form.password' type='password'/>
+
+
+</form> -->
+
+<form>
+  <input type="text" ng-model="vm.form.email" name="Email" />
+  <input type="password" ng-model="vm.form.password" name="Password" />
+  <input type="submit" value="Submit" ng-click='vm.login()'/>
+</form>
