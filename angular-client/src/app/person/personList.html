@@ -73,6 +73,18 @@
               <semesterpicker name='end_semester_block' ng-model='person.end_semester'flex></semesterpicker>
             </div>
           </div>
+
+
+          <<md-content layout-padding layout-wrap>
+              <h1>Add a position for this person</h1>
+              <div ng-repeat="position in person.personPostionForm">
+                  {{ vm.person.personPositionForm }}
+              </div>
+              <md-button ng-click="vm.createPersonPosition(person)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
+          </md-content>
+
+
+
         </md-content>
 
 

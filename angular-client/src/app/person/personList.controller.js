@@ -16,6 +16,7 @@
 		vm.activate = activate;
 		vm.getPersons = getPersons;
 		vm.createPerson = createPerson;
+		vm.createPersonPosition = createPersonPosition;
 		vm.updatePerson = updatePerson;
 		vm.deletePerson = deletePerson;
 
@@ -72,6 +73,15 @@
 				})
 			} else {
 				vm.create = true;
+			}
+		}
+
+		function createPersonPosition(open, formList){
+			if(form.createPersonPosition){
+				console.log(formList);
+				form.createPersonPosition = false;
+			} else {
+				form.createPersonPosition = true;
 			}
 		}
 
