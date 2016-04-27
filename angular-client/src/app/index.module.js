@@ -17,7 +17,8 @@
       'broho.person',
       'broho.room',
       'broho.map',
-      'broho.floor'
+      'broho.floor',
+      'broho.auth'
     ]);
 
 })();

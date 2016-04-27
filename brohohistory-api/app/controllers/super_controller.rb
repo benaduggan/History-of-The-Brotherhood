@@ -58,7 +58,7 @@ class SuperController < ActionController::API
       token_value = request.headers['token']
       token = ActiveRecord::Base.connection.execute("SELECT * FROM token WHERE value = '#{token_value}'").first
       if token.nil? or token_expired?(token)
-        render json: "token does not exist or is expired", status: :not_found
+        render json: {'errors' => "token does not exist or is expired"}, status: :not_found
       end
     end
 
@@ -74,7 +74,7 @@ class SuperController < ActionController::API
     end
 
     def token_expired?(token)
-      if Time.now < Time.parse(token['created_at']) + (60*60*24)
+      if !(Time.now < Time.parse(token['created_at']) + (60*60*24))
         ActiveRecord::Base.connection.execute("DELETE FROM token WHERE value='#{token['value']}'")
         return true
       else
