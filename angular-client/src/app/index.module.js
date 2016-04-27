@@ -16,6 +16,7 @@
       'broho.position',
       'broho.person',
       'broho.room',
+      'broho.map',
       'broho.floor'
     ]);
 
