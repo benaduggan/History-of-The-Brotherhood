@@ -10,5 +10,5 @@ BEGIN;
   CREATE TABLE enduser(id serial primary key, first_name text not null, last_name text not null, email text not null UNIQUE, verified_floor_member smallint, role text not null, password text not null);
   CREATE TABLE person_room(id serial primary key, person_id int references person(id), room_id int references room(id), start_semester text not null, end_semester text not null);
   CREATE TABLE person_position(id serial primary key, person_id int references person(id), position_id int references position(id), description text, start_semester date, end_semester date);
-  CREATE TABLE token(id serial primary key, enduser_id int references enduser(id), value text UNIQUE, created_at time not null);
+  CREATE TABLE token(id serial primary key, enduser_id int references enduser(id), value text UNIQUE, created_at text not null);
 COMMIT;

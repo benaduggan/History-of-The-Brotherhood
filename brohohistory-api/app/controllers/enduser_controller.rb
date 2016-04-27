@@ -20,7 +20,7 @@ class EnduserController < SuperController
           break random_t unless token_exists?(random_t)
       end
       ActiveRecord::Base.connection.execute("INSERT INTO token (enduser_id, value, created_at) VALUES ('#{user['id']}', '#{token}', '#{Time.now}')")
-      render json: {token: token}
+      render json: {token: token, user:user}
 
     else
       render json: {"errors" => ["The requested resource was not found"]}, status: :not_found

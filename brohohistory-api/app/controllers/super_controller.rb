@@ -1,4 +1,5 @@
 class SuperController < ActionController::API
+  require 'time'
   before_action :set_model_instance, only: [:show, :update, :destroy]
 
   @@model_fields = []
@@ -55,7 +56,10 @@ class SuperController < ActionController::API
   protected
     def check_token
       token_value = request.headers['token']
-      return ActiveRecord::Base.connection.execute("SELECT * FROM token WHERE value = '#{token_value}'").first
+      token = ActiveRecord::Base.connection.execute("SELECT * FROM token WHERE value = '#{token_value}'").first
+      if token.nil? or token_expired?(token)
+        render json: {'errors' => "token does not exist or is expired"}, status: :not_found
+      end
     end
 
   private
@@ -69,6 +73,14 @@ class SuperController < ActionController::API
       return ActiveRecord::Base.connection.execute(query).to_a.length > 0
     end
 
+    def token_expired?(token)
+      if !(Time.now < Time.parse(token['created_at']) + (60*60*24))
+        ActiveRecord::Base.connection.execute("DELETE FROM token WHERE value='#{token['value']}'")
+        return true
+      else
+        return false
+      end
+    end
 
     def save_model(values)
       field_names_string = ""

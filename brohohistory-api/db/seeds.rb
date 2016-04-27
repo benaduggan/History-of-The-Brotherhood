@@ -34,10 +34,17 @@ end
 
 def get_or_create_floor
   floor_id = ActiveRecord::Base.connection.execute("SELECT id FROM floor WHERE name = 'The Brotherhood'")
+<<<<<<< HEAD
+  if floor_id.first.nil?
+    query = "INSERT INTO floor (name, description) VALUES ('The Brotherhood', 'An awesome place to live')"
+    x = ActiveRecord::Base.connection.execute(query)
+    return x.first[0]
+=======
   if floor_id.to_a.length < 1
     ActiveRecord::Base.connection.execute("INSERT INTO floor (name, description) VALUES ('The Brotherhood', 'An awesome place to live')")
     floor = ActiveRecord::Base.connection.execute("SELECT * FROM floor WHERE name = 'The Brotherhood'").to_a
     return floor.first['id']
+>>>>>>> edb9ff836e56da58a067af4c888c95010ef6f856
   else
     return floor_id.first['id']
   end
