@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   resources :position
 
   resources :room
+
+  post 'login', to: 'enduser#login'
+  delete 'logout', to: 'enduser#logout'
 end

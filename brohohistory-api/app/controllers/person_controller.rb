@@ -1,5 +1,5 @@
 class PersonController < SuperController
-  require 'json'
+  before_action :check_token
   prepend_before_action :set_class_variables
 
 

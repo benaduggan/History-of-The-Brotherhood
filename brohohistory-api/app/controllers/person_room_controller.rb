@@ -1,4 +1,5 @@
 class PersonRoomController < SuperController
+  before_action :check_token
   prepend_before_action :set_class_variables
 
   # GET /map/semester/year
