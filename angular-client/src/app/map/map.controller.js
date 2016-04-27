@@ -7,72 +7,70 @@
 
 	function MapController($rootScope, dataService) {
 		var vm = this;
-		vm.maps = [];
-		vm.classes = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
+		vm.map_data = [];
 		vm.form = {};
-		vm.delete = false;
+
+		vm.selected_semester = 'Spring-2016';
+
 		vm.create = false;
+		vm.delete = false;
 
 		vm.activate = activate;
-		vm.getPersons = getPersons;
-		vm.createPerson = createPerson;
-		vm.updatePerson = updatePerson;
-		vm.deletePerson = deletePerson;
-
+		vm.getMap = getMap;
+		vm.createMapItem = createMapItem;
+		vm.getPeople = getPeople;
+		vm.getRooms = getRooms;
+		vm.deleteMapItem = deleteMapItem;
 
 		vm.activate();
 
 		///////////////////////////////////////////////////////////////////////
 
 		function activate() {
-			vm.getPersons();
-			$rootScope.$broadcast('setTitle', 'Person List');
+			vm.getMap();
+			$rootScope.$broadcast('setTitle', 'The Map');
 		}
 
-		function getPersons() {
-			dataService.get('map/').then(function(promise){
-				vm.maps = promise.data;
+		function getMap() {
+			var tmp = vm.selected_semester.split('-')
+			dataService.get('map/' + tmp[0] + '/' + tmp[1] + '/').then(function(promise){
+				vm.map_data = promise.data;
 			})
 		}
 
-		function updatePerson(map) {
-			if(map.edit){
-				if(angular.isUndefined(map.recurring)) {
-					map.recurring = 0;
-				} else {
-					map.recurring = 1;
-				}
-
-				dataService.put('map/' + map.id + '/', map).then(function(){
-					vm.activate();
-					map.edit = false; // on success
-				})
-			} else {
-				map.edit = true;
-			}
-		}
-
-		function deletePerson(map) {
-			if(map.delete){
-				dataService.delete('map/' + map.id + '/').then(function(){
-					map.delete = false; // on success pop from list
-					vm.activate();
-				});
-			} else {
-				map.delete = true;
-			}
-		}
-
-		function createPerson() {
-			if(vm.create){
-				dataService.post('map/', vm.form).then(function () {
-					vm.create = false;
-					vm.form = {};
+		function createMapItem() {
+			if (vm.create) {
+				dataService.post('person_room/', vm.form).then(function(promise){
 					vm.activate();
 				})
+				vm.create = false;
 			} else {
 				vm.create = true;
 			}
+		}
+
+		function deleteMapItem(item) {
+			if (item.delete){
+				dataService.delete('person_room/' + item.id + '/').then(function() {
+					vm.activate();
+				})
+			}
+			else{
+				item.delete = true;
+			}
+		}
+
+
+		function getPeople() {
+			dataService.get('person/').then(function(promise) {
+				vm.people = promise.data;
+			});
+		}
+
+		function getRooms() {
+			dataService.get('room/').then(function(promise) {
+				vm.rooms = promise.data;
+			});
 		}
 
 	}

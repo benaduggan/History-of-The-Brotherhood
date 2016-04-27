@@ -60,7 +60,12 @@ end
 def create_person_rooms
   person = ActiveRecord::Base.connection.execute("SELECT * from person WHERE first_name = 'Nathan'").to_a.first
   room = ActiveRecord::Base.connection.execute("SELECT * from room WHERE room_num = '305'").to_a.first
+  query = "INSERT INTO person_room (person_id, room_id, start_semester, end_semester) VALUES ('#{person['id']}', '#{room['id']}', '#{person['start_semester']}', '#{person['end_semester']}')"
+  ActiveRecord::Base.connection.execute(query)
 
+
+  person = ActiveRecord::Base.connection.execute("SELECT * from person WHERE first_name = 'Blake'").to_a.first
+  room = ActiveRecord::Base.connection.execute("SELECT * from room WHERE room_num = '330'").to_a.first
   query = "INSERT INTO person_room (person_id, room_id, start_semester, end_semester) VALUES ('#{person['id']}', '#{room['id']}', '#{person['start_semester']}', '#{person['end_semester']}')"
   ActiveRecord::Base.connection.execute(query)
 end
