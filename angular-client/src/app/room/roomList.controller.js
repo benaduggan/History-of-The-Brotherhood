@@ -28,12 +28,12 @@
         function activate() {
           $rootScope.$broadcast('setTitle', 'Room List');
           vm.getRooms();
-          vm.getFloors();
         }
 
         function getRooms() {
           dataService.get('room/').then(function(promise){
             vm.rooms = promise.data;
+            vm.getFloors();
         });
         }
 

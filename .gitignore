@@ -34,3 +34,6 @@ build/
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+brohohistory-api/config/database.yml
+angular-client/src/app/data/data.module.js
