@@ -13,7 +13,7 @@
       controller: SemesterPickerController,
       controllerAs: 'vm',
       bindToController: true,
-      require: ['^form', 'ngModel'],
+      require: "?ngModel",
       scope: {
           consumerModel: '=ngModel'
       }
@@ -33,13 +33,15 @@
 
         vm.createYears = createYears;
         activate();
-        $scope.$watchCollection('vm.semester_model', buildSemester); // Every time the interface is changed, the value is updated
 
         ///////////////////////////////////////////////////////////
 
         function activate() {
             vm.createYears();
             vm.form = $element.controller('form');
+            vm.semester_model.semester = vm.consumerModel.split('-')[0];
+            vm.semester_model.year = vm.consumerModel.split('-')[1];
+            $scope.$watchCollection('vm.semester_model', buildSemester); // Every time the interface is changed, the value is updated
         }
 
         function buildSemester() {

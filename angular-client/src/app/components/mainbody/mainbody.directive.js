@@ -21,7 +21,7 @@
       function MainBodyController($scope) {
         var vm = this;
         $scope.$on('setTitle', function(event, content) {
-          vm.title = content; 
+            vm.title = content;
         });
       }
     }
