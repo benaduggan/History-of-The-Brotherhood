@@ -57,11 +57,28 @@ def create_rooms
   end
 end
 
+def create_person_rooms
+  person = ActiveRecord::Base.connection.execute("SELECT * from person WHERE first_name = 'Nathan'").to_a.first
+  room = ActiveRecord::Base.connection.execute("SELECT * from room WHERE room_num = '305'").to_a.first
+
+  query = "INSERT INTO person_room (person_id, room_id, start_semester, end_semester) VALUES ('#{person['id']}', '#{room['id']}', '#{person['start_semester']}', '#{person['end_semester']}')"
+  ActiveRecord::Base.connection.execute(query)
+end
+
+def create_enduser
+  password = BCrypt::Password.create('password').to_s
+
+  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('super', 'user', 'brohoadmin@mailinator.com', 1, 'admin', '#{password}')"
+  ActiveRecord::Base.connection.execute(query)
+end
+
 def createTheThings
   create_rooms()
   create_people()
+  create_person_rooms()
   create_positions()
   create_people_position()
+  create_enduser()
 end
 
 createTheThings()
