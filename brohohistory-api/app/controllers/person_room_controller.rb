@@ -20,20 +20,15 @@ class PersonRoomController < SuperController
   end
 
   def mapStats
-    #fall 2016 -> 2016-08-01
-    #get amoutn of people vs potential amount
     date = string_to_date(params['semester'] + '-' + params['year']).split('-')
     query = %Q{
-      SELECT count(*)
+      SELECT count(*) / (SELECT sum(num_occupants) FROM room)::float as percent
       FROM person
       WHERE to_date(start_semester, 'YYYY MM DD') <= '#{date[0]} #{date[1]} #{date[2]}' AND
             to_date(end_semester, 'YYYY MM DD') >= '#{date[0]} #{date[1]} #{date[2]}'
     }
-    numKnown = ActiveRecord::Base.connection.execute(query).to_a[0]['count']
-    numPossible = ActiveRecord::Base.connection.execute('select sum(num_occupants) from room').to_a[0]['sum']
-    render json: {'percent' => ((numKnown / numPossible.to_f)*100).round(2), 'num_known' => numKnown, 'num_possible' => numPossible}
-
-
+    percentage = ActiveRecord::Base.connection.execute(query).to_a[0]['percent']
+    render json: {'percent' => (percentage*100).round(2)}
   end
 
   def create
