@@ -21,6 +21,7 @@
 		vm.getPeople = getPeople;
 		vm.getRooms = getRooms;
 		vm.deleteMapItem = deleteMapItem;
+    vm.getMapStats = getMapStats;
 
 		vm.activate();
 
@@ -35,6 +36,13 @@
 			var tmp = vm.selected_semester.split('-')
 			dataService.get('map/' + tmp[0] + '/' + tmp[1] + '/').then(function(promise){
 				vm.map_data = promise.data;
+			})
+		}
+
+    function getMapStats() {
+			var tmp = vm.map_stats.split('-')
+			dataService.get('map/' + tmp[0] + '/' + tmp[1] + '/stats').then(function(promise){
+				vm.map_stats_data = promise.data;
 			})
 		}
 

@@ -1,5 +1,16 @@
 <h1> I'm the map!</h1>
 
+
+<form>
+  <div layout="row" class='md-whiteframe-1dp' flex='45'>
+    <label for="start_semester_block" class="md-padding">Start Semester</label>
+    <semesterpicker ng-model='vm.map_stats' flex></semesterpicker>
+  </div>
+  <input type="submit" value="Submit" ng-click='vm.getMapStats()'/>
+</form>
+
+<p>{{vm.map_stats_data}} </p>
+
 <div layout="column" layout-align="center center">
     <table ng-if="vm.map_data.length > 0">
         <thead>
