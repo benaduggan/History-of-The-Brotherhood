@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :person_room
   get '/map/:semester/:year', to: 'person_room#showMap', as: 'showMap'
+  get '/map/:semester/:year/stats', to: 'person_room#mapStats'
 
 
   resources :picture

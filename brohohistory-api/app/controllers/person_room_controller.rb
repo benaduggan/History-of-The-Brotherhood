@@ -19,6 +19,22 @@ class PersonRoomController < SuperController
     render json: @result
   end
 
+  def mapStats
+    #fall 2016 -> 2016-08-01
+    #get amoutn of people vs potential amount
+    date = string_to_date(params['semester'] + '-' + params['year']).split('-')
+    query = %Q{
+      SELECT count(*)
+      FROM person
+      WHERE to_date(start_semester, 'YYYY MM DD') <= '#{date[0]} #{date[1]} #{date[2]}' AND
+            to_date(end_semester, 'YYYY MM DD') >= '#{date[0]} #{date[1]} #{date[2]}'
+    }
+    numKnown = ActiveRecord::Base.connection.execute(query).to_a[0]['count']
+    numPossible = ActiveRecord::Base.connection.execute('select sum(num_occupants) from room').to_a[0]['sum']
+    render json: {'percent' => ((numKnown / numPossible.to_f)*100).round(2), 'num_known' => numKnown, 'num_possible' => numPossible}
+
+
+  end
 
   def create
     ['start_semester', 'end_semester'].each do |dateField|
@@ -48,7 +64,7 @@ class PersonRoomController < SuperController
       date = Date.parse(date)
       month = date.month
       year = date.year
-      semester = {1 => "Spring", 8 => "Fall"} # 1 for January for Jterm/Spring, 8 for August
+      semester = {1 => "Spring", 8 => "Fall"} # 1 for January for Jterm/Spring, 8 for August  fall 2016 -> 2016-08-01
       return "#{semester[month]}-#{year}"
     end
 
