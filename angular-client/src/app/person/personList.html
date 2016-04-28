@@ -47,6 +47,16 @@
                     <p flex>{{ person.end_semester }}</p>
                 </div>
             </div>
+
+            <h2>Positions</h2>
+            <div ng-repeat="position in person.positions">
+                <span>title: {{ position.title }}</span>
+                <span>start_semester: {{ position.start_semester }}</span>
+                <span>end_semester: {{ position.end_semester }}</span>
+                <span>description: {{ position.description }}</span>
+                <span>recurring? {{ position.recurring }}</span>
+            </div>
+
         </md-content>
 
         <md-content layout-padding layout-wrap ng-if='person.edit'>
@@ -74,13 +84,56 @@
             </div>
           </div>
 
-
-          <<md-content layout-padding layout-wrap>
-              <h1>Add a position for this person</h1>
-              <div ng-repeat="position in person.personPostionForm">
-                  {{ vm.person.personPositionForm }}
+          <md-content layout-padding layout-wrap>
+              <h2>Positions</h2>
+              <div ng-repeat="position in person.positions">
+                  <span>title: {{ position.title }}</span>
+                  <span>start_semester: {{ position.start_semester }}</span>
+                  <span>end_semester: {{ position.end_semester }}</span>
+                  <span>description: {{ position.description }}</span>
+                  <span>recurring? {{ position.recurring }}</span>
+                  <md-button ng-if='person.edit' ng-click="vm.deletePosition(position)" class="md-warn">{{ position.delete ? "Are you sure?" : "Delete" }}</md-button>
               </div>
-              <md-button ng-click="vm.createPersonPosition(person)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
+
+              <md-content ng-if='vm.createPosition'>
+                  <form>
+                    <md-content layout-padding layout-wrap>
+                        <md-input-container class="md-block">
+                          <label for='floor_id'>Position</label>
+                          <md-select placeholder="Select Position" ng-model="vm.positionForm.position_id" md-on-open="vm.getPositions()">
+                               <md-option ng-value="pos.id" ng-repeat="pos in vm.positions">{{ pos.title }}</md-option>
+                          </md-select>
+                        </md-input-container>
+                    </md-content>
+
+                    <div layout="row">
+                      <div layout="column" flex>
+                        <label for="start_semester_block" class="md-padding">Start Semester</label>
+                        <semesterpicker ng-model='vm.positionForm.start_semester' flex></semesterpicker>
+                      </div>
+
+                      <div layout="column" flex>
+                        <label for="end_semester_block" class="md-padding">End Semester</label>
+                        <semesterpicker name='end_semester_block' ng-model='vm.positionForm.end_semester'flex></semesterpicker>
+                      </div>
+                    </div>
+
+                    <md-content layout-padding layout-wrap>
+                      <md-input-container class="md-block" >
+                        <label>Description</label>
+                        <input md-maxlength="200" required md-no-asterisk name="description" ng-model="vm.positionForm.description">
+                        <div ng-messages="positionUpdateForm.description.$error">
+                          <div ng-message="required">This field is required.</div>
+                          <div ng-message="md-maxlength">The name has to be less than 200 characters long.</div>
+                        </div>
+                      </md-input-container>
+                    </md-content>
+                  </form>
+              </md-content>
+
+
+              <md-button ng-click="vm.createPersonPosition(person)" class="md-primary md-raised">{{ vm.createPosition ? "Save" : 'Add a position for ' + person.first_name }}</md-button>
+              <md-button ng-click="vm.createPosition = false" ng-if='vm.createPosition' class="md-warn md-raised">Cancel</md-button>
           </md-content>
 
 

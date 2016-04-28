@@ -12,6 +12,7 @@
 		vm.form = {};
 		vm.delete = false;
 		vm.create = false;
+		vm.createPosition = false;
 
 		vm.activate = activate;
 		vm.getPersons = getPersons;
@@ -19,6 +20,9 @@
 		vm.createPersonPosition = createPersonPosition;
 		vm.updatePerson = updatePerson;
 		vm.deletePerson = deletePerson;
+		vm.deletePerson = deletePerson;
+		vm.getPositions = getPositions;
+		vm.deletePosition = deletePosition;
 
 
 		vm.activate();
@@ -33,6 +37,12 @@
 		function getPersons() {
 			dataService.get('person/').then(function(promise){
 				vm.persons = promise.data;
+			})
+		}
+
+		function getPositions() {
+			dataService.get('position/').then(function(promise){
+				vm.positions = promise.data;
 			})
 		}
 
@@ -76,12 +86,27 @@
 			}
 		}
 
-		function createPersonPosition(open, formList){
-			if(form.createPersonPosition){
-				console.log(formList);
-				form.createPersonPosition = false;
+		function createPersonPosition(person){
+			if(vm.createPosition){
+				vm.positionForm.person_id = person.id;
+				dataService.post('person_position/', vm.positionForm).then(function() {
+					vm.createPosition = false;
+					vm.positionForm = {};
+					vm.activate();
+				});
 			} else {
-				form.createPersonPosition = true;
+				vm.createPosition = true;
+			}
+		}
+
+		function deletePosition(position){
+			if(position.delete){
+				dataService.delete('person_position/' + position.id + '/', vm.positionForm).then(function() {
+					position.delete = false;
+					vm.activate();
+				});
+			} else {
+				position.delete = true;
 			}
 		}
 

@@ -15,6 +15,10 @@ class PersonController < SuperController
         row[dateField] = date_to_string(row[dateField])
       end
     end
+
+    @model.each do |person|
+      person['positions'] = ActiveRecord::Base.connection.execute("SELECT * FROM position as p INNER JOIN person_position as pp ON p.id = pp.position_id WHERE pp.person_id = #{person['id']}").to_a
+    end
     render json: @model
   end
 
