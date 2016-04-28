@@ -40,7 +40,7 @@
 
 		function createMapItem() {
 			if (vm.create) {
-				dataService.post('person_room/', vm.form).then(function(promise){
+				dataService.post('person_room/', vm.form).then(function(){
 					vm.activate();
 				})
 				vm.create = false;

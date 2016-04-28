@@ -1,15 +1,14 @@
-<!-- <form>
-  <label>Email</label>
-  <input ng-model='vm.form.email'/>
+<md-content layout-padding>
+    <form layout='column'  layout-align='center center'>
+        <md-input-container flex>
+          <label>Email</label>
+          <input ng-model="vm.form.email">
+        </md-input-container>
 
-  <label>Password</label>
-  <input ng-model='vm.form.password' type='password'/>
-
-
-</form> -->
-
-<form>
-  <input type="text" ng-model="vm.form.email" name="Email" />
-  <input type="password" ng-model="vm.form.password" name="Password" />
-  <input type="submit" value="Submit" ng-click='vm.login()'/>
-</form>
+        <md-input-container>
+          <label>Password</label>
+          <input type="password" ng-model="vm.form.password" name="Password" />
+        </md-input-container>
+        <md-button type='submit' ng-click='vm.login()' class="md-raised md-primary">Log in</md-button>
+    </form>
+</md-content>

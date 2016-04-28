@@ -1,0 +1,11 @@
+<md-toolbar ng-if='!vm.logged_in' class="md-toolbar-tools md-accent">
+  <a flex ui-sref='login'>Log In</a>
+</md-toolbar>
+
+<md-toolbar ng-if='vm.logged_in' class="md-toolbar-tools md-accent">
+    <div layout-align='column'>
+      <span>Welcome, {{ vm.user.first_name }}</span>
+      <br>
+      <a ng-click='vm.logout()'>Log out</a>
+    </div>
+</md-toolbar>

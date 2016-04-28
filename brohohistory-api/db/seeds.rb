@@ -71,9 +71,9 @@ def create_person_rooms
 end
 
 def create_enduser
-  password = BCrypt::Password.create('password').to_s
+  password = BCrypt::Password.create('pass').to_s
 
-  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('super', 'user', 'brohoadmin@mailinator.com', 1, 'admin', '#{password}')"
+  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('super', 'user', 'user', 1, 'admin', '#{password}')"
   ActiveRecord::Base.connection.execute(query)
 end
 
