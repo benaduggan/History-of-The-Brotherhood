@@ -1,15 +1,16 @@
 <h1> I'm the map!</h1>
 
+<div layout='column' layout-align="center center" flex>
+  <form>
+    <div layout="row" class='md-whiteframe-1dp'flex>
+      <label for="start_semester_block" class="md-padding">Start Semester</label>
+      <semesterpicker ng-model='vm.map_stats' flex></semesterpicker>
+    </div>
+    <md-button class="md-primary" ng-click='vm.getMapStats()' md-ripple-size="full">Submit</md-button>
+  </form>
 
-<form>
-  <div layout="row" class='md-whiteframe-1dp' flex='45'>
-    <label for="start_semester_block" class="md-padding">Start Semester</label>
-    <semesterpicker ng-model='vm.map_stats' flex></semesterpicker>
-  </div>
-  <input type="submit" value="Submit" ng-click='vm.getMapStats()'/>
-</form>
-
-<p>{{vm.map_stats_data}} </p>
+  <p ng-if='vm.map_stats_data.percent'>Historical completeness: {{vm.map_stats_data.percent}}% </p>
+</div>
 
 <div layout="column" layout-align="center center">
     <table ng-if="vm.map_data.length > 0">
