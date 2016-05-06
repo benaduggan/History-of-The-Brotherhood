@@ -6,7 +6,7 @@
         .factory('sessionService', sessionService);
 
 
-        function sessionService($rootScope, $http, $window, dataService, DATA_API_BASE_URL) {
+        function sessionService($rootScope, $http, $window, dataService) {
         var service = {
                 login: login,
                 logout: logout
@@ -25,14 +25,11 @@
 		}
 
         function logout() {
-            return dataService.delete('logout').then(function(promise){
+            return dataService.delete('logout').then(function(){
                 $window.localStorage.removeItem("brohoToken")
                 $rootScope.$broadcast('authenticated', false);
             });
         }
 
-        function baseUrl() {
-            return DATA_API_BASE_URL;
-        }
     }
 })();

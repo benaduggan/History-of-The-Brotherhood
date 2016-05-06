@@ -20,8 +20,6 @@
       /** @ngInject */
       function MainBodyController($scope) {
         var vm = this;
-        vm.test = "asasd";
-
 
         $scope.$on('setTitle', function(event, content) {
             vm.title = content;

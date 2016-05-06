@@ -1,4 +1,3 @@
-
   <md-content class="md-padding">
     <div layout="column" flex>
       <md-card ng-repeat="floor in vm.floors | orderBy:'name'">
@@ -6,9 +5,9 @@
 
           <md-card-title>
             <md-card-title-text>
-              <span class="md-headline" ng-if='!floor.edit'>{{ floor.name }}</span>
+              <span class="md-headline" ng-if="!floor.edit">{{ floor.name }}</span>
 
-                  <md-input-container ng-if='floor.edit' class="md-block">
+                  <md-input-container ng-if="floor.edit" class="md-block">
                     <label>Floor Name</label>
                     <input name="name" ng-model="floor.name" required>
                     <div ng-messages="floorUpdateForm.name.$error">
@@ -22,9 +21,9 @@
           </md-card-title>
 
           <md-content layout-padding layout-wrap>
-              <p ng-if='!floor.edit'>{{ floor.description }}</p>
+              <p ng-if="!floor.edit">{{ floor.description }}</p>
 
-              <md-input-container ng-if='floor.edit' class="md-block">
+              <md-input-container ng-if="floor.edit" class="md-block">
                 <label>Description</label>
                 <input md-maxlength="200" required md-no-asterisk name="description" ng-model="floor.description">
                 <div ng-messages="floorUpdateForm.description.$error">
@@ -36,17 +35,17 @@
           <md-card-actions layout="row" layout-align="end center">
             <md-button ng-click="vm.updateFloor(floor)" class="md-primary">{{ floor.edit ? "Save" : "Update"}}</md-button>
 
-            <md-button ng-if='floor.edit' ng-click="floor.edit = false" class="md-warn">Cancel</md-button>
-            <md-button ng-if='!floor.edit' ng-click="vm.deleteFloor(floor)" class="md-warn">{{ floor.delete ? "Are you sure?" : "Delete" }}</md-button>
+            <md-button ng-if="floor.edit" ng-click="floor.edit = false" class="md-warn">Cancel</md-button>
+            <md-button ng-if="!floor.edit" ng-click="vm.deleteFloor(floor)" class="md-warn">{{ floor.delete ? "Are you sure?" : "Delete" }}</md-button>
           </md-card-actions>
         </form>
       </md-card>
 
 
       <md-card>
-        <md-card-title ng-if='!vm.create'>
-          <md-card-title-text layout='row' layout-align='center'>
-            <md-button ng-click='vm.createFloor(floor)' style='width: 15%;' class="md-headline md-raised md-primary">Create new floor</md-button>
+        <md-card-title ng-if="!vm.create">
+          <md-card-title-text layout="row" layout-align="center">
+            <md-button ng-click="vm.createFloor(floor)" style="width: 15%;" class="md-headline md-raised md-primary">Create new floor</md-button>
           </md-card-title-text>
         </md-card-title>
 

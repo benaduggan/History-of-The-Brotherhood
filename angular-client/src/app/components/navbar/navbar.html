@@ -1,11 +1,9 @@
-<md-sidenav style="display: inline-block"
-            md-is-locked-open="$mdMedia('gt-xs')"
-            md-component-id="sidenav" layout="column" layout-fill>
+<md-sidenav style="display: inline-block" md-is-locked-open="$mdMedia('gt-xs')" md-component-id="sidenav" layout="column" layout-fill>
 
     <md-toolbar layout="column" layout-align="center start"
                 class="md-medium-tall" layout-padding>
         <a ui-sref="home">
-          <img src='http://dummyimage.com/200x55/000/fff.png'/> <!-- brand logo -->
+          <img src="http://dummyimage.com/200x55/000/fff.png"/> <!-- brand logo -->
         </a>
     </md-toolbar>
 
@@ -19,7 +17,7 @@
                 class="smaller"></md-icon>
               <p>Map</p>
           </md-list-item>
-        <md-list>
+        </md-list>
 
           <md-list-item ui-sref="positionList">
               <md-icon md-svg-src="assets/images/icons/person-pin.svg"
@@ -34,19 +32,16 @@
           </md-list-item>
 
           <md-list-item ui-sref="roomList">
-              <md-icon md-svg-src='assets/images/icons/room.svg'
+              <md-icon md-svg-src="assets/images/icons/room.svg"
                 class="smaller"></md-icon>
               <p>Rooms</p>
           </md-list-item>
 
           <md-list-item ui-sref="floorList">
-              <md-icon md-svg-src='assets/images/icons/floor.svg'
+              <md-icon md-svg-src="assets/images/icons/floor.svg"
                 class="smaller"></md-icon>
               <p>Floor</p>
           </md-list-item>
-
-
-        </md-list>
 
         <md-divider></md-divider>
 

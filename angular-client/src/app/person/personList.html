@@ -5,9 +5,9 @@
       <form name="personUpdateForm">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline" ng-if='!person.edit'>{{ person.first_name + " " + person.last_name}}</span>
+            <span class="md-headline" ng-if="!person.edit">{{ person.first_name + " " + person.last_name}}</span>
 
-            <div layout="row" ng-if='person.edit'>
+            <div layout="row" ng-if="person.edit">
               <md-input-container class="md-block" flex>
                 <label>First Name</label>
                 <input name="first_name" ng-model="person.first_name" required>
@@ -31,19 +31,19 @@
           </md-card-title-media>
         </md-card-title>
 
-        <md-content layout-padding layout-wrap ng-if='!person.edit'>
+        <md-content layout-padding layout-wrap ng-if="!person.edit">
 
-            <label for='start_class' class="md-title">Start Semester</label>
-            <p name='start_class'>{{ person.start_class }}</p>
+            <label for="start_class" class="md-title">Start Semester</label>
+            <p name="start_class">{{ person.start_class }}</p>
 
             <div layout="row">
-                <div layout='column' flex>
-                    <label for='start_semester' class="md-title">Start Semester</label>
-                    <p name='start_semester'>{{ person.start_semester }}</p>
+                <div layout="column" flex>
+                    <label for="start_semester" class="md-title">Start Semester</label>
+                    <p name="start_semester">{{ person.start_semester }}</p>
                 </div>
 
-                <div layout='column' flex>
-                    <label for='end_semester' class="md-title">End Semester</label>
+                <div layout="column" flex>
+                    <label for="end_semester" class="md-title">End Semester</label>
                     <p flex>{{ person.end_semester }}</p>
                 </div>
             </div>
@@ -59,7 +59,7 @@
 
         </md-content>
 
-        <md-content layout-padding layout-wrap ng-if='person.edit'>
+        <md-content layout-padding layout-wrap ng-if="person.edit">
           <md-input-container class="md-block" flex>
             <label>Start Class</label>
             <md-select ng-model="person.start_class" name="start_class" required>
@@ -75,12 +75,12 @@
           <div layout="row">
             <div layout="column" flex>
               <label for="end_semester_block" class="md-padding">Start Semester</label>
-              <semesterpicker ng-model='person.start_semester' flex></semesterpicker>
+              <semesterpicker ng-model="person.start_semester" flex></semesterpicker>
             </div>
 
             <div layout="column" flex>
               <label for="end_semester_block" class="md-padding">End Semester</label>
-              <semesterpicker name='end_semester_block' ng-model='person.end_semester'flex></semesterpicker>
+              <semesterpicker name="end_semester_block" ng-model="person.end_semester" flex></semesterpicker>
             </div>
           </div>
 
@@ -92,14 +92,14 @@
                   <span>end_semester: {{ position.end_semester }}</span>
                   <span>description: {{ position.description }}</span>
                   <span>recurring? {{ position.recurring }}</span>
-                  <md-button ng-if='person.edit' ng-click="vm.deletePosition(position)" class="md-warn">{{ position.delete ? "Are you sure?" : "Delete" }}</md-button>
+                  <md-button ng-if="person.edit" ng-click="vm.deletePosition(position)" class="md-warn">{{ position.delete ? "Are you sure?" : "Delete" }}</md-button>
               </div>
 
-              <md-content ng-if='vm.createPosition'>
+              <md-content ng-if="vm.createPosition">
                   <form>
                     <md-content layout-padding layout-wrap>
                         <md-input-container class="md-block">
-                          <label for='floor_id'>Position</label>
+                          <label for="floor_id">Position</label>
                           <md-select placeholder="Select Position" ng-model="vm.positionForm.position_id" md-on-open="vm.getPositions()">
                                <md-option ng-value="pos.id" ng-repeat="pos in vm.positions">{{ pos.title }}</md-option>
                           </md-select>
@@ -109,12 +109,12 @@
                     <div layout="row">
                       <div layout="column" flex>
                         <label for="start_semester_block" class="md-padding">Start Semester</label>
-                        <semesterpicker ng-model='vm.positionForm.start_semester' flex></semesterpicker>
+                        <semesterpicker ng-model="vm.positionForm.start_semester" flex></semesterpicker>
                       </div>
 
                       <div layout="column" flex>
                         <label for="end_semester_block" class="md-padding">End Semester</label>
-                        <semesterpicker name='end_semester_block' ng-model='vm.positionForm.end_semester'flex></semesterpicker>
+                        <semesterpicker name="end_semester_block" ng-model="vm.positionForm.end_semester" flex></semesterpicker>
                       </div>
                     </div>
 
@@ -132,8 +132,8 @@
               </md-content>
 
 
-              <md-button ng-click="vm.createPersonPosition(person)" class="md-primary md-raised">{{ vm.createPosition ? "Save" : 'Add a position for ' + person.first_name }}</md-button>
-              <md-button ng-click="vm.createPosition = false" ng-if='vm.createPosition' class="md-warn md-raised">Cancel</md-button>
+              <md-button ng-click="vm.createPersonPosition(person)" class="md-primary md-raised">{{ vm.createPosition ? "Save" : "Add a position for " + person.first_name }}</md-button>
+              <md-button ng-click="vm.createPosition = false" ng-if="vm.createPosition" class="md-warn md-raised">Cancel</md-button>
           </md-content>
 
 
@@ -144,17 +144,17 @@
         <md-card-actions layout="row" layout-align="end center">
           <md-button ng-click="vm.updatePerson(person)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
 
-          <md-button ng-if='person.edit' ng-click="person.edit = false" class="md-warn">Cancel</md-button>
-          <md-button ng-if='!person.edit' ng-click="vm.deletePerson(person)" class="md-warn">{{ person.delete ? "Are you sure?" : "Delete" }}</md-button>
+          <md-button ng-if="person.edit" ng-click="person.edit = false" class="md-warn">Cancel</md-button>
+          <md-button ng-if="!person.edit" ng-click="vm.deletePerson(person)" class="md-warn">{{ person.delete ? "Are you sure?" : "Delete" }}</md-button>
         </md-card-actions>
       </form>
     </md-card>
 
 
     <md-card>
-      <md-card-title ng-if='!vm.create'>
-        <md-card-title-text layout='row' layout-align='center'>
-          <md-button ng-click='vm.createPerson(person)' style='width: 15%;' class="md-headline md-raised md-primary">Create new person</md-button>
+      <md-card-title ng-if="!vm.create">
+        <md-card-title-text layout="row" layout-align="center">
+          <md-button ng-click="vm.createPerson(person)" style="width: 15%;" class="md-headline md-raised md-primary">Create new person</md-button>
         </md-card-title-text>
       </md-card-title>
 
@@ -194,12 +194,12 @@
           <div layout="row">
             <div layout="column" flex>
               <label for="start_semester_block" class="md-padding">Start Semester</label>
-              <semesterpicker ng-model='vm.form.start_semester' flex></semesterpicker>
+              <semesterpicker ng-model="vm.form.start_semester" flex></semesterpicker>
             </div>
 
             <div layout="column" flex>
               <label for="end_semester_block" class="md-padding">End Semester</label>
-              <semesterpicker name='end_semester_block' ng-model='vm.form.end_semester'flex></semesterpicker>
+              <semesterpicker name="end_semester_block" ng-model="vm.form.end_semester" flex></semesterpicker>
             </div>
           </div>
 

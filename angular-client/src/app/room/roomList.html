@@ -1,16 +1,15 @@
-
   <md-content class="md-padding">
     <div layout="row" layout-wrap>
-      <md-card ng-repeat="room in vm.rooms | orderBy:'room_num'" flex='20'>
+      <md-card ng-repeat="room in vm.rooms | orderBy:'room_num'" flex="20">
         <form name="roomUpdateForm">
           <md-card-title>
             <md-card-title-text>
               <span class="md-headline">Room Num: {{ room.room_num }}</span>
-              <span class="md-subhead" ng-if='!room.edit'>Number of Occupants:{{ room.num_occupants }}</span>
+              <span class="md-subhead" ng-if="!room.edit">Number of Occupants:{{ room.num_occupants }}</span>
 
-                  <md-input-container ng-if='room.edit' class="md-block">
+                  <md-input-container ng-if="room.edit" class="md-block">
                     <label>Number of Occupants</label>
-                    <input name="name" ng-model="room.num_occupants" type='number' step='any' min='1' max='3' required>
+                    <input name="name" ng-model="room.num_occupants" type="number" step="any" min="1" max="3" required>
                     <div ng-messages="roomUpdateForm.name.$error">
                       <div ng-message="required">This field is required.</div>
                     </div>
@@ -20,9 +19,9 @@
           </md-card-title>
 
           <md-content layout-padding layout-wrap>
-              <p ng-if='!room.edit'>{{ vm.floor_id_to_string(room.floor_id) }}</p>
-              <md-input-container ng-if='room.edit' class="md-block">
-                <label for='floor_id'>Floor Id</label>
+              <p ng-if="!room.edit">{{ vm.floor_id_to_string(room.floor_id) }}</p>
+              <md-input-container ng-if="room.edit" class="md-block">
+                <label for="floor_id">Floor Id</label>
                 <md-select placeholder="Select Floor" ng-model="room.floor_id" md-on-open="vm.getFloors()">
                      <md-option ng-value="floor.id" ng-repeat="floor in vm.floors">{{ floor.name }}</md-option>
                 </md-select>
@@ -32,17 +31,17 @@
           <md-card-actions layout="row" layout-align="end center">
             <md-button ng-click="vm.updateRoom(room)" class="md-primary">{{ room.edit ? "Save" : "Update"}}</md-button>
 
-            <md-button ng-if='room.edit' ng-click="room.edit = false" class="md-warn">Cancel</md-button>
-            <md-button ng-if='!room.edit' ng-click="vm.deleteRoom(room)" class="md-warn">{{ room.delete ? "Are you sure?" : "Delete" }}</md-button>
+            <md-button ng-if="room.edit" ng-click="room.edit = false" class="md-warn">Cancel</md-button>
+            <md-button ng-if="!room.edit" ng-click="vm.deleteRoom(room)" class="md-warn">{{ room.delete ? "Are you sure?" : "Delete" }}</md-button>
           </md-card-actions>
         </form>
       </md-card>
 
 
       <md-card>
-        <md-card-title ng-if='!vm.create'>
-          <md-card-title-text layout='row' layout-align='center'>
-            <md-button ng-click='vm.createRoom(room)' class="md-headline md-raised md-primary">Create Room</md-button>
+        <md-card-title ng-if="!vm.create">
+          <md-card-title-text layout="row" layout-align="center">
+            <md-button ng-click="vm.createRoom(room)" class="md-headline md-raised md-primary">Create Room</md-button>
           </md-card-title-text>
         </md-card-title>
 
@@ -51,7 +50,7 @@
           <form name="roomForm">
              <md-input-container class="md-block">
                <label>Room Number</label>
-               <input name="floor_num" ng-model="vm.form.room_num" type='number' step='any' min='1' required>
+               <input name="floor_num" ng-model="vm.form.room_num" type="number" step="any" min="1" required>
                <div ng-messages="roomForm.floor_num.$error">
                  <div ng-message="required">This field is required.</div>
                </div>
@@ -59,14 +58,14 @@
 
              <md-input-container class="md-block">
                <label>Number of Occupants</label>
-               <input name="num_occupants" ng-model="vm.form.num_occupants" type='number' step='any' min='1' max='3' required>
+               <input name="num_occupants" ng-model="vm.form.num_occupants" type="number" step="any" min="1" max="3" required>
                <div ng-messages="roomForm.num_occupants.$error">
                  <div ng-message="required">This field is required.</div>
                </div>
              </md-input-container>
 
              <md-input-container class="md-block">
-               <label for='floor_id'>Floor Id</label>
+               <label for="floor_id">Floor Id</label>
                <md-select placeholder="Select Floor" ng-model="vm.form.floor_id" md-on-open="vm.getFloors()">
                     <md-option ng-value="floor.id" ng-repeat="floor in vm.floors">{{ floor.name }}</md-option>
                </md-select>

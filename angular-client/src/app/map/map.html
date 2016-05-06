@@ -1,15 +1,15 @@
-<h1> I'm the map!</h1>
+<h1> I"m the map!</h1>
 
-<div layout='column' layout-align="center center" flex>
+<div layout="column" layout-align="center center" flex>
   <form>
-    <div layout="row" class='md-whiteframe-1dp'flex>
+    <div layout="row" class="md-whiteframe-1dp" flex>
       <label for="start_semester_block" class="md-padding">Start Semester</label>
-      <semesterpicker ng-model='vm.map_stats' flex></semesterpicker>
+      <semesterpicker ng-model="vm.map_stats" flex></semesterpicker>
     </div>
-    <md-button class="md-primary" ng-click='vm.getMapStats()' md-ripple-size="full">Submit</md-button>
+    <md-button class="md-primary" ng-click="vm.getMapStats()" md-ripple-size="full">Submit</md-button>
   </form>
 
-  <p ng-if='vm.map_stats_data.percent'>Historical completeness: {{vm.map_stats_data.percent}}% </p>
+  <p ng-if="vm.map_stats_data.percent">Historical completeness: {{vm.map_stats_data.percent}}% </p>
 </div>
 
 <div layout="column" layout-align="center center">
@@ -51,20 +51,19 @@
                     <md-button ng-click="vm.updateMapItem(lived_for)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
                 </td> -->
                 <td>
-                    <md-button ng-if='person.edit' ng-click="person.edit = false" class="md-warn">Cancel</md-button>
-                    <md-button ng-if='!person.edit' ng-click="vm.deleteMapItem(lived_for)" class="md-warn">{{ lived_for.delete ? "Are you sure?" : "Delete" }}</md-button>
+                    <md-button ng-if="person.edit" ng-click="person.edit = false" class="md-warn">Cancel</md-button>
+                    <md-button ng-if="!person.edit" ng-click="vm.deleteMapItem(lived_for)" class="md-warn">{{ lived_for.delete ? "Are you sure?" : "Delete" }}</md-button>
                 </td>
-                </md-card-actions>
             </tr>
         </tbody>
     </table>
 </div>
 
-<div layout='row' layout-align="center center">
-  <md-card flex='50'>
-    <md-card-title ng-if='!vm.create'>
-      <md-card-title-text layout='row' layout-align='center'>
-        <md-button ng-click='vm.createMapItem()' class="md-headline md-raised md-primary">Add where you lived</md-button>
+<div layout="row" layout-align="center center">
+  <md-card flex="50">
+    <md-card-title ng-if="!vm.create">
+      <md-card-title-text layout="row" layout-align="center">
+        <md-button ng-click="vm.createMapItem()" class="md-headline md-raised md-primary">Add where you lived</md-button>
       </md-card-title-text>
     </md-card-title>
 
@@ -74,9 +73,9 @@
 
           <md-content layout-padding layout-wrap>
               <md-input-container class="md-block">
-                <label for='person'>Person</label>
-                <md-select placeholder="Select Person" name='person' ng-model="vm.form.person_id" md-on-open="vm.getPeople()">
-                     <md-option ng-value="person.id" ng-repeat="person in vm.people | orderBy:first_name:true ">{{ person.first_name + ' ' + person.last_name }}</md-option>
+                <label for="person">Person</label>
+                <md-select placeholder="Select Person" name="person" ng-model="vm.form.person_id" md-on-open="vm.getPeople()">
+                     <md-option ng-value="person.id" ng-repeat="person in vm.people | orderBy:first_name:true ">{{ person.first_name + " " + person.last_name }}</md-option>
                 </md-select>
               </md-input-container>
           </md-content>
@@ -84,22 +83,22 @@
 
           <md-content layout-padding layout-wrap>
               <md-input-container class="md-block">
-                <label for='room'>Room</label>
-                <md-select placeholder="Select Room" name='room' ng-model="vm.form.room_id" md-on-open="vm.getRooms()">
+                <label for="room">Room</label>
+                <md-select placeholder="Select Room" name="room" ng-model="vm.form.room_id" md-on-open="vm.getRooms()">
                      <md-option ng-value="room.id" ng-repeat="room in vm.rooms | orderBy:room_num">{{ room.room_num }}</md-option>
                 </md-select>
               </md-input-container>
           </md-content>
 
         <div layout="row" layout-align="space-around">
-          <div layout="column" class='md-whiteframe-1dp' flex='45'>
+          <div layout="column" class="md-whiteframe-1dp" flex="45">
             <label for="start_semester_block" class="md-padding">Start Semester</label>
-            <semesterpicker ng-model='vm.form.start_semester' flex></semesterpicker>
+            <semesterpicker ng-model="vm.form.start_semester" flex></semesterpicker>
           </div>
 
-          <div layout="column" class='md-whiteframe-1dp' flex='45'>
+          <div layout="column" class="md-whiteframe-1dp" flex="45">
             <label for="end_semester_block" class="md-padding">End Semester</label>
-            <semesterpicker name='end_semester_block' ng-model='vm.form.end_semester'flex></semesterpicker>
+            <semesterpicker name="end_semester_block" ng-model="vm.form.end_semester" flex></semesterpicker>
           </div>
         </div>
 
@@ -116,6 +115,7 @@
           <md-button ng-click="vm.createMapItem()" class="md-primary">Create</md-button>
           <md-button ng-click="vm.create = false" class="md-warn">Cancel</md-button>
         </div>
+      </div>
       </form>
     </md-content>
   </md-card>
