@@ -11,7 +11,7 @@
         restrict: 'E',
         templateUrl: 'app/components/auth/auth.html',
         controller: AuthController,
-        controllerAs: 'vm',
+        controllerAs: 'authCtrl',
         bindToController: true
       };
 
