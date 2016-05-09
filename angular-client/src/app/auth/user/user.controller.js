@@ -37,8 +37,13 @@
 				alert("Password must be set!")
 				return
 			}
+			if(angular.isUndefined(vm.user.verified_floor_member)) {
+				vm.user.verified_floor_member = 0;
+			} else {
+				vm.user.verified_floor_member = 1;
+			}
 			dataService.put('enduser/' + vm.user.id, vm.user).then(function () {
-				vm.activate();
+				$state.go("userList");
 			});
 		}
 

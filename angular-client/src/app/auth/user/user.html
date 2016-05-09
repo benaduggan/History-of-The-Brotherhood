@@ -65,6 +65,7 @@
     <md-card-actions layout="row" layout-align="end center">
       <md-button ng-click="vm.updateUser()" class="md-primary">Save</md-button>
       <md-button ng-click="vm.deleteUser()" class="md-warn">{{ vm.user.delete ? "Are you sure?" : "Delete" }}</md-button>
+      <md-button ui-sref="userList" class="md-warn">Cancel</md-button>
     </md-card-actions>
   </form>
 </md-card>
