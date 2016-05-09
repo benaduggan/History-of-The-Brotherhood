@@ -23,6 +23,10 @@
         templateUrl: 'app/auth/user/user.html',
         controller: 'UserController as vm'
       })
+      .state('registrationSuccess', {
+        url: '/register/success',
+        template: '<h1>Success! Now you have to wait for verification, but the admins have been notified and should verify you soon!</h1>'
+      })
       ;
     }
 

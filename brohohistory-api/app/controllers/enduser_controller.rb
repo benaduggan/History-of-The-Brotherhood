@@ -7,6 +7,12 @@ class EnduserController < SuperController
     @@model_fields = ["first_name", "last_name", "email", "verified_floor_member", "role", "password"]
   end
 
+  def register
+    params['verified_floor_member'] = 0
+    params['role'] = 'user'
+    self.create()
+  end
+
   def create
     encrypted = BCrypt::Password.create(params['password'])
     params['password'] = encrypted.to_s

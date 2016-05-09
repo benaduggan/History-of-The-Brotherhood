@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   resources :room
 
   post 'login', to: 'enduser#login'
+  post 'register', to: 'enduser#register'
   delete 'logout', to: 'enduser#logout'
 end

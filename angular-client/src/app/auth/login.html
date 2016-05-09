@@ -1,14 +1,53 @@
-<md-content layout-padding>
-    <form layout="column"  layout-align="center center">
-        <md-input-container flex>
-          <label>Email</label>
-          <input ng-model="vm.form.email">
-        </md-input-container>
+<div layout="row" layout-align="center space-between">
+      <md-content layout-padding flex>
+          <h1>Log In</h1>
+          <form layout="column"  layout-align="center center">
+              <md-input-container flex>
+                <label>Email</label>
+                <input ng-model="vm.form.email">
+              </md-input-container>
 
-        <md-input-container>
-          <label>Password</label>
-          <input type="password" ng-model="vm.form.password" name="Password" />
-        </md-input-container>
-        <md-button type="submit" ng-click="vm.login()" class="md-raised md-primary">Log in</md-button>
-    </form>
-</md-content>
+              <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="vm.form.password" name="Password" />
+              </md-input-container>
+              <md-button type="submit" ng-click="vm.login()" class="md-raised md-primary">Log in</md-button>
+          </form>
+      </md-content>
+
+
+      <md-content layout-padding flex>
+        <h1>Register</h1>
+        <form name="registerForm" layout="column"  layout-align="center center">
+              <div layout="row">
+                <md-input-container class="md-block" flex>
+                  <label>First Name</label>
+                  <input name="first_name" ng-model="vm.registrationForm.first_name" required>
+                  <div ng-messages="registerForm.first_name.$error">
+                    <div ng-message="required">This field is required.</div>
+                  </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex>
+                  <label>Last Name</label>
+                  <input required md-no-asterisk name="last_name" ng-model="vm.registrationForm.last_name">
+                  <div ng-messages="registerForm.last_name.$error">
+                    <div ng-message="required">This field is required.</div>
+                  </div>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                <md-input-container flex>
+                  <label>Email</label>
+                  <input ng-model="vm.registrationForm.email">
+                </md-input-container>
+
+                <md-input-container>
+                  <label>Password</label>
+                  <input type="password" ng-model="vm.registrationForm.password" name="Password" />
+                </md-input-container>
+              </div>
+              <md-button ng-click="vm.register()" class="md-raised md-primary">Register</md-button>
+          </form>
+      </md-content>
+</div>
