@@ -32,12 +32,16 @@
                 <td>{{ user.role }}</td>
                 <td ng-if="user.verified_floor_member"><md-icon md-svg-src="assets/images/icons/verified.svg" class="smaller"></md-icon></td>
                 <td ng-if="!user.verified_floor_member"></td>
-                <td>
+                <td ng-if="vm.sessionUser.role === 'admin'">
                     <md-button ng-hide="user.verified_floor_member" ng-click="vm.verifyUser('verify', user)" class="md-primary">{{ user.verify ? "Are you sure?" : "Verify" }}</md-button>
                     <md-button ng-show="user.verified_floor_member" ng-click="vm.verifyUser('unverify', user)" class="md-primary">{{ user.verify ? "Are you sure?" : "Un-verify" }}</md-button>
                     <md-button ng-click="vm.editUser(user)" class="md-primary">Update</md-button>
                     <md-button ng-click="vm.deleteUser(user)" class="md-warn">{{ user.delete ? "Are you sure?" : "Delete" }}</md-button>
                 </td>
+                <td ng-if="vm.sessionUser.role !== 'admin'">
+                    <md-button ng-click="vm.editUser(user)" ng-if="vm.sessionUser.id === user.id" class="md-primary">Update</md-button>
+                </td>
+
             </tr>
         </tbody>
     </table>

@@ -9,7 +9,8 @@
         function sessionService($rootScope, $http, $window, dataService) {
         var service = {
                 login: login,
-                logout: logout
+                logout: logout,
+                getUser: getUser
             };
 
         return service;
@@ -29,6 +30,10 @@
                 $window.localStorage.removeItem("brohoToken")
                 $rootScope.$broadcast('authenticated', false);
             });
+        }
+
+        function getUser() {
+            return JSON.parse($window.localStorage.brohoUser);
         }
 
     }

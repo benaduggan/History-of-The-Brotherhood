@@ -5,9 +5,10 @@
 	.module('broho.auth')
 	.controller('UserController', UserController);
 
-	function UserController($rootScope, $stateParams, $state, dataService) {
+	function UserController($rootScope, $stateParams, $state, dataService, sessionService) {
 		var vm = this;
 		vm.user = {};
+		vm.sessionUser = sessionService.getUser();
 
 		vm.roles = ['user', 'admin'];
 
@@ -33,10 +34,6 @@
 		}
 
 		function updateUser() {
-			if (!vm.user.password){
-				alert("Password must be set!")
-				return
-			}
 			if(angular.isUndefined(vm.user.verified_floor_member)) {
 				vm.user.verified_floor_member = 0;
 			} else {

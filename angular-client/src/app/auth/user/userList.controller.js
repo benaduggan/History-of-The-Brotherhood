@@ -5,10 +5,11 @@
 	.module('broho.auth')
 	.controller('UserListController', UserListController);
 
-	function UserListController($rootScope, $state, dataService) {
+	function UserListController($rootScope, $state, dataService, sessionService) {
 		var vm = this;
 		vm.form = {};
 		vm.userList = [];
+		vm.sessionUser = sessionService.getUser();
 
 		vm.activate = activate;
 		vm.getUsers = getUsers;
