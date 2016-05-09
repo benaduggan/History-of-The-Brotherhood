@@ -27,18 +27,6 @@
 
     <md-content layout-padding layout-wrap>
       <md-input-container class="md-block" flex>
-        <label>Role</label>
-        <md-select ng-model="vm.user.role" name="role" required>
-          <md-option ng-repeat="role in vm.roles" value="{{ role }}">
-            {{ role }}
-          </md-option>
-        </md-select>
-        <div ng-messages="userUpdateForm.role.$error">
-          <div ng-message="required">This field is required.</div>
-        </div>
-      </md-input-container>
-
-      <md-input-container class="md-block" flex>
         <label>Email</label>
         <input ng-model="vm.user.email" type="email" name="email" required>
         <div ng-messages="userUpdateForm.email.$error">
@@ -53,13 +41,6 @@
           <div ng-message="required">This field is required.</div>
         </div>
       </md-input-container>
-
-      <md-input-container class="md-block">
-        <md-checkbox ng-model="vm.user.verified_floor_member" name="verified" required ng-true-value="1">
-          Verified Floor Member?
-        </md-checkbox>
-      </md-input-container>
-
   </md-content>
 
     <md-card-actions layout="row" layout-align="end center">

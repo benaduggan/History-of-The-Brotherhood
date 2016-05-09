@@ -14,8 +14,13 @@ class EnduserController < SuperController
   end
 
   def update
-    encrypted = BCrypt::Password.create(params['password'])
-    params['password'] = encrypted.to_s
+    if params['password'] != ""
+      encrypted = BCrypt::Password.create(params['password'])
+      params['password'] = encrypted.to_s
+    else
+      user = ActiveRecord::Base.connection.execute("SELECT * FROM enduser WHERE id=#{params['id']};").first
+      params['password'] = user['password']
+    end
     super
   end
 

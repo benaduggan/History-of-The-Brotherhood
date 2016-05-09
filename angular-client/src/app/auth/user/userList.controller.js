@@ -14,6 +14,7 @@
 		vm.getUsers = getUsers;
 		vm.editUser = editUser;
 		vm.deleteUser = deleteUser;
+		vm.verifyUser = verifyUser;
 
 		vm.activate();
 
@@ -36,6 +37,23 @@
 				});
 			} else {
 				user.delete = true;
+			}
+		}
+
+		function verifyUser(action, user) {
+			if (user.verify) {
+				if (action === 'verify'){
+					user.verified_floor_member = 1;
+				} else {
+					user.verified_floor_member = 0;
+				}
+				user.password = "";
+				dataService.put('enduser/' + user.id, user).then(function () {
+					user.verify = false;
+					vm.activate();
+				});
+			} else {
+				user.verify = true;
 			}
 		}
 
