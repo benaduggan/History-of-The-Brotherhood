@@ -24,10 +24,12 @@
 
         activate();
 
+        $rootScope.$on('$stateChangeStart', function(){
+            vm.sessionUser = sessionService.getUser();
+        });
+
         function activate() {
-            $rootScope.$on('$stateChangeStart', function(){
-                vm.sessionUser = sessionService.getUser();
-            })
+            vm.sessionUser = sessionService.getUser();
         }
     }
   }

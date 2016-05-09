@@ -36,7 +36,7 @@
                 var user = sessionService.getUser();
                 if (!user.verified_floor_member) {
                     console.log("This route requires you to be verified - redirecting to login page");
-                    $state.transitionTo("login");
+                    $state.transitionTo("registrationSuccess");
                     event.preventDefault();
                     return;
                 }
