@@ -13,6 +13,12 @@ class EnduserController < SuperController
     super
   end
 
+  def update
+    encrypted = BCrypt::Password.create(params['password'])
+    params['password'] = encrypted.to_s
+    super
+  end
+
   def login
     if user = valid_user? and valid_password?(user)
       token = loop do
