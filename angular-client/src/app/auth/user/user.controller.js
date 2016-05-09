@@ -3,26 +3,30 @@
 
 	angular
 	.module('broho.auth')
-	.controller('AuthController', AuthController);
+	.controller('UserController', UserController);
 
-	function AuthController($rootScope, $state, sessionService) {
+	function UserController($rootScope, $state, dataService) {
 		var vm = this;
 		vm.form = {};
+		vm.userList = [];
 
 		vm.activate = activate;
-		vm.login = login;
+		vm.getUsers = getUsers;
+
 		vm.activate();
 
 		///////////////////////////////////////////////////////////////////////
 
 		function activate() {
-			$rootScope.$broadcast('setTitle', 'Login');
+			$rootScope.$broadcast('setTitle', 'Users');
+			vm.getUsers();
 		}
 
-		function login() {
-			sessionService.login(vm.form).then(function(){
-				$state.transitionTo('map');
+		function getUsers() {
+			dataService.get('enduser/').then(function (promise) {
+				vm.userList = promise.data;
 			});
 		}
+
 	}
 })();

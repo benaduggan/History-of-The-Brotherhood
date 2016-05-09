@@ -1,3 +1,49 @@
 <!-- search bar -->
 <!-- Invite people button -->
-<!-- List of Users on the site and their account info --> 
+
+<div layout="column" layout-align="center center">
+    <table ng-if="vm.userList.length > 0">
+        <thead>
+            <tr>
+                <th ng-click="sortColumn = 'first_name';
+                              reverse = ! reverse">
+                    First name
+                </th>
+                <th ng-click="sortColumn = 'last_name';
+                              reverse = ! reverse">
+                    Last name
+                </th>
+                <th ng-click="sortColumn = 'email';
+                              reverse = ! reverse">
+                    Email
+                </th>
+                <th ng-click="sortColumn = 'role';
+                              reverse = ! reverse">
+                    Role
+                </th>
+                <th ng-click="sortColumn = 'verified_floor_member';
+                              reverse = ! reverse">
+                  Verified
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody ng-init="sortColumn = 'status'; reverse=true;">
+            <tr ng-repeat="user in vm.userList | orderBy:sortColumn:reverse">
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td ng-if="user.verified_floor_member"><md-icon md-svg-src="assets/images/icons/verified.svg" class="smaller"></md-icon></td>
+                <!-- <td>
+                    <md-button ng-click="vm.updateMapItem(user)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
+                </td> -->
+                <td>
+                    <md-button ng-if="person.edit" ng-click="person.edit = false" class="md-warn">Cancel</md-button>
+                    <md-button ng-if="!person.edit" ng-click="vm.deleteMapItem(user)" class="md-warn">{{ user.delete ? "Are you sure?" : "Delete" }}</md-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
