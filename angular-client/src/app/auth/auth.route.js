@@ -16,13 +16,13 @@
       .state('userList', {
         url: '/user/',
         templateUrl: 'app/auth/user/userList.html',
+        controller: 'UserListController as vm'
+      })
+      .state('user', {
+        url: '/user/:id',
+        templateUrl: 'app/auth/user/user.html',
         controller: 'UserController as vm'
       })
-    //   .state('adminList', {
-    //     url: '/admin/',
-    //     templateUrl: 'app/auth/admin/adminList.html',
-    //     controller: 'UserController as vm'
-    //   })
       ;
     }
 

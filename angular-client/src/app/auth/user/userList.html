@@ -21,27 +21,23 @@
                               reverse = ! reverse">
                     Role
                 </th>
-                <th ng-click="sortColumn = 'verified_floor_member';
-                              reverse = ! reverse">
-                  Verified
-                </th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
-        <tbody ng-init="sortColumn = 'status'; reverse=true;">
+        <tbody ng-init="sortColumn = 'first_name'; reverse=false;">
             <tr ng-repeat="user in vm.userList | orderBy:sortColumn:reverse">
                 <td>{{ user.first_name }}</td>
                 <td>{{ user.last_name }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.role }}</td>
                 <td ng-if="user.verified_floor_member"><md-icon md-svg-src="assets/images/icons/verified.svg" class="smaller"></md-icon></td>
-                <!-- <td>
-                    <md-button ng-click="vm.updateMapItem(user)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
-                </td> -->
+                <td ng-if="!user.verified_floor_member"></td>
                 <td>
-                    <md-button ng-if="person.edit" ng-click="person.edit = false" class="md-warn">Cancel</md-button>
-                    <md-button ng-if="!person.edit" ng-click="vm.deleteMapItem(user)" class="md-warn">{{ user.delete ? "Are you sure?" : "Delete" }}</md-button>
+                    <md-button ng-click="vm.editUser(user)" class="md-primary">Update</md-button>
+                    <md-button ng-click="vm.deleteUser(user)" class="md-warn">{{ user.delete ? "Are you sure?" : "Delete" }}</md-button>
+                    
                 </td>
             </tr>
         </tbody>

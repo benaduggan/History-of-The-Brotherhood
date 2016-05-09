@@ -73,7 +73,13 @@ end
 def create_enduser
   password = BCrypt::Password.create('pass').to_s
 
-  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('super', 'user', 'user', 1, 'admin', '#{password}')"
+  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('ben', 'duggan', 'user', 1, 'admin', '#{password}')"
+  ActiveRecord::Base.connection.execute(query)
+
+  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('ben-unverified', 'duggan', 'user2', 0, 'user', '#{password}')"
+  ActiveRecord::Base.connection.execute(query)
+
+  query = "INSERT INTO enduser (first_name, last_name, email, verified_floor_member, role, password) VALUES ('adam', 'pogwizd', 'user3', 0, 'user', '#{password}')"
   ActiveRecord::Base.connection.execute(query)
 end
 
