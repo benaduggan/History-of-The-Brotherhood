@@ -28,7 +28,6 @@
 		}
 
 		function register() {
-			console.log(vm.registrationForm);
 			dataService.post('register/', vm.registrationForm).then(function(){
 				$state.transitionTo('registrationSuccess');
 			});

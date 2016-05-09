@@ -11,7 +11,8 @@
       .state('roomList', {
         url: '/room/',
         templateUrl: 'app/room/roomList.html',
-        controller: 'RoomListController as vm'
+        controller: 'RoomListController as vm',
+        authenticate: true
       });
     }
 

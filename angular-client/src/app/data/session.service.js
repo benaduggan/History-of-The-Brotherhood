@@ -28,11 +28,15 @@
         function logout() {
             return dataService.delete('logout').then(function(){
                 $window.localStorage.removeItem("brohoToken")
+                $window.localStorage.removeItem("brohoUser")
                 $rootScope.$broadcast('authenticated', false);
             });
         }
 
         function getUser() {
+            if($window.localStorage.getItem('brohoUser') === null ) {
+                return false;
+            }
             return JSON.parse($window.localStorage.brohoUser);
         }
 

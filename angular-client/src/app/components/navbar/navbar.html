@@ -11,13 +11,12 @@
 
         <auth></auth>
 
-        <md-list>
+        <md-list ng-if="navCtrl.sessionUser.verified_floor_member">
           <md-list-item ui-sref="map">
               <md-icon md-svg-src="assets/images/icons/map.svg"
                 class="smaller"></md-icon>
               <p>Map</p>
           </md-list-item>
-        </md-list>
 
           <md-list-item ui-sref="positionList">
               <md-icon md-svg-src="assets/images/icons/person-pin.svg"
@@ -48,7 +47,7 @@
                 class="smaller"></md-icon>
               <p>Users</p>
           </md-list-item>
-
+        </md-list>
         <md-divider></md-divider>
 
         <md-list>

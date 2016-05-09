@@ -11,7 +11,8 @@
       .state('positionList', {
         url: '/position/',
         templateUrl: 'app/position/positionList.html',
-        controller: 'PositionListController as vm'
+        controller: 'PositionListController as vm',
+        authenticate: true
       });
     }
 

@@ -11,14 +11,24 @@
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
       controller: NavbarController,
-      controllerAs: 'vm',
+      controllerAs: 'navCtrl',
       bindToController: true
     };
 
     return directive;
 
     /** @ngInject */
-    function NavbarController() {
+    function NavbarController($scope, $rootScope, sessionService) {
+        var vm = this;
+        vm.sessionUser = {};
+
+        activate();
+
+        function activate() {
+            $rootScope.$on('$stateChangeStart', function(){
+                vm.sessionUser = sessionService.getUser();
+            })
+        }
     }
   }
 

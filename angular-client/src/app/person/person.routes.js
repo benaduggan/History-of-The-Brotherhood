@@ -11,7 +11,8 @@
       .state('personList', {
         url: '/person/',
         templateUrl: 'app/person/personList.html',
-        controller: 'PersonListController as vm'
+        controller: 'PersonListController as vm',
+        authenticate: true
       });
     }
 

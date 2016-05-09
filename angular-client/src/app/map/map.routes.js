@@ -11,7 +11,8 @@
       .state('map', {
         url: '/map/',
         templateUrl: 'app/map/map.html',
-        controller: 'MapController as vm'
+        controller: 'MapController as vm',
+        authenticate: true
       });
     }
 
