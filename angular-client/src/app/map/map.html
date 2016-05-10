@@ -1,13 +1,12 @@
-<div layout="column" layout-align="center center" flex>
+<div layout="column">
   <form>
+    <h1 style="text-align:center;">Select Semester to View</h1>
     <div layout="row" class="md-whiteframe-1dp" flex>
-      <label for="start_semester_block" class="md-padding">Start Semester</label>
-      <semesterpicker ng-model="vm.map_stats" flex></semesterpicker>
+      <semesterpicker ng-model="vm.selected_semester" flex></semesterpicker>
+      <md-button class="md-primary" ng-click="vm.getMapStats(); vm.getMap();" md-ripple-size="full">Submit</md-button>
     </div>
-    <md-button class="md-primary" ng-click="vm.getMapStats()" md-ripple-size="full">Submit</md-button>
   </form>
-
-  <p ng-if="vm.map_stats_data.percent">Historical completeness: {{vm.map_stats_data.percent}}% </p>
+  <p style="text-align:center;" ng-if="vm.map_stats_data.percent">Historical completeness: <b>{{vm.map_stats_data.percent}}%</b> </p>
 </div>
 
 <div layout="column" layout-align="center center">
@@ -34,7 +33,7 @@
                               reverse = ! reverse">
                     End Semester
                 </th>
-                <th></th>
+                <th>Class</th>
                 <th></th>
             </tr>
         </thead>
@@ -48,6 +47,7 @@
                 <!-- <td>
                     <md-button ng-click="vm.updateMapItem(lived_for)" class="md-primary">{{ person.edit ? "Save" : "Update"}}</md-button>
                 </td> -->
+                <td>{{ vm.calculate_class(lived_for) }}</td>
                 <td>
                     <md-button ng-if="person.edit" ng-click="person.edit = false" class="md-warn">Cancel</md-button>
                     <md-button ng-if="!person.edit" ng-click="vm.deleteMapItem(lived_for)" class="md-warn">{{ lived_for.delete ? "Are you sure?" : "Delete" }}</md-button>
@@ -118,3 +118,5 @@
     </md-content>
   </md-card>
 </div>
+
+<room ng-model="vm.roomTest"></room>

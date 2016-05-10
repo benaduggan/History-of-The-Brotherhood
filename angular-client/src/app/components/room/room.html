@@ -1,0 +1,10 @@
+<div class='room'>
+  <span>{{ roomCtrl.consumerModel.room_num }}</span>
+  <div layout="row" layout-align="space-around">
+      <div ng-repeat="person in roomCtrl.consumerModel.occupants" layout='column'>
+        <img class="roomPic" ng-src="{{person.url}}"/>
+        <span>{{person.nickname}}</span>
+        <span>{{person.first_name + ' ' + person.last_name}}</span>
+      <div>
+  </div>
+</div>

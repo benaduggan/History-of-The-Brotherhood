@@ -4,11 +4,14 @@ class PersonRoomController < SuperController
 
   # GET /map/semester/year
   def showMap
+    date = string_to_date(params['semester'] + '-' + params['year']).split('-')
     query = %Q{
         SELECT pr.*, p.first_name, p.last_name, r.room_num
         FROM person_room AS pr
         INNER JOIN person AS p ON p.id = pr.person_id
         INNER JOIN room AS r ON r.id = pr.room_id
+        WHERE to_date(pr.start_semester, 'YYYY MM DD') <= '#{date[0]} #{date[1]} #{date[2]}' AND
+        to_date(pr.end_semester, 'YYYY MM DD') >= '#{date[0]} #{date[1]} #{date[2]}'
     }
     @result = ActiveRecord::Base.connection.execute(query).to_a
     @result.each do |row|
