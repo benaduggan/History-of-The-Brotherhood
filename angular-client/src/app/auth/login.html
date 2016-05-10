@@ -39,15 +39,21 @@
               <div layout="row">
                 <md-input-container flex>
                   <label>Email</label>
-                  <input ng-model="vm.registrationForm.email">
+                  <input ng-model="vm.registrationForm.email" name="email" required>
+                  <div ng-messages="registerForm.last_name.$error">
+                    <div ng-message="required">This field is required.</div>
+                  </div>
                 </md-input-container>
 
                 <md-input-container>
                   <label>Password</label>
-                  <input type="password" ng-model="vm.registrationForm.password" name="Password" />
+                  <input type="password" ng-model="vm.registrationForm.password" name="Password" required/>
+                  <div ng-messages="registerForm.last_name.$error">
+                    <div ng-message="required">This field is required.</div>
+                  </div>
                 </md-input-container>
               </div>
-              <md-button ng-click="vm.register()" class="md-raised md-primary">Register</md-button>
+              <md-button type="submit" ng-click="vm.register()" class="md-raised md-primary">Register</md-button>
           </form>
       </md-content>
 </div>
