@@ -20,7 +20,8 @@
     "angular": "~1.5.3"
   },
   "devDependencies": {
-    "angular-mocks": "~1.5.3"
+    "angular-mocks": "~1.5.3",
+    "filepicker-js-bower": "filepicker-js#^2.4.5"
   },
   "resolutions": {
     "jquery": "~2.1.4",
