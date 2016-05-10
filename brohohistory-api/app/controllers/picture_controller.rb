@@ -4,6 +4,6 @@ class PictureController < SuperController
 
   def set_class_variables
     @@model_name = 'picture'
-    @@model_fields = ["type", "type_id", "title", "description", "url"]
+    @@model_fields = ["table_type", "type_id", "title", "description", "url"]
   end
 end
