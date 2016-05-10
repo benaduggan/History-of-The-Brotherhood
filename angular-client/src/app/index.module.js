@@ -18,7 +18,8 @@
       'broho.room',
       'broho.map',
       'broho.floor',
-      'broho.auth'
+      'broho.auth',
+      'broho.picture'
     ])
     .run(AuthenticationRequired);
 

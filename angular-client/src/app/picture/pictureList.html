@@ -1,0 +1,58 @@
+  <form>
+    <div layout="row" class="md-whiteframe-1dp" flex>
+      <label class="md-padding">Title</label>
+      <input type="text" name="Title" ng-model="vm.form.title">
+
+      <label class="md-padding">Description</label>
+      <input type="text" name="Description" ng-model="vm.form.description">
+
+      <label class="md-padding">Table Type</label>
+      <input type="text" name="table_type" ng-model="vm.form.table_type">
+
+      <label class="md-padding">Type Id</label>
+      <input type="text" name="type_id" ng-model="vm.form.type_id">
+
+      <img src="{{vm.form.url}}" width="200" height="200">
+      <md-button class="md-primary" id="uploadPhotoBtn">"Upload Picture"</md-button>
+    </div>
+    <md-button class="md-primary" ng-click="vm.submitPicture()" md-ripple-size="full">Submit</md-button>
+  </form>
+<div layout="row">
+  <md-card ng-repeat="picture in vm.pictures" flex="45" >
+      <form name="pictureForm">
+        <img ng-src="{{picture.url}}"  class="md-card-image" alt="cool pic">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" ng-if="!picture.edit">{{picture.title}}</span>
+            <md-input-container ng-if="picture.edit" class="md-block">
+              <label>Title</label>
+              <input required md-no-asterisk name="title" ng-model="picture.title">
+              <div ng-messages="pictureForm.title.$error">
+                <div ng-message="required">This field is required.</div>
+              </div>
+            </md-input-container>
+
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p ng-if="!picture.edit">
+            {{picture.description}}
+          </p>
+
+
+            <md-input-container ng-if="picture.edit" class="md-block">
+              <label>Description</label>
+              <input required md-no-asterisk name="description" ng-model="picture.description">
+              <div ng-messages="pictureForm.description.$error">
+                <div ng-message="required">This field is required.</div>
+              </div>
+            </md-input-container>
+        </md-card-content>
+        <md-card-actions layout="column" layout-align="start">
+          <md-button ng-click="vm.editPicture(picture)" class="md-primary">{{picture.edit ? "Save" : "Edit"}}</md-button>
+          <md-button ng-if="picture.edit" ng-click="picture.edit=false" class="md-warn">Cancel</md-button>
+          <md-button ng-if="!picture.edit" ng-click="vm.deletePicture(picture)" class="md-warn">{{picture.delete ? "Are you Sure?" : "Delete"}}</md-button>
+        </md-card-actions>
+    </form>
+      </md-card>
+</div>
