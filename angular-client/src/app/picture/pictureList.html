@@ -1,58 +1,95 @@
-  <form>
-    <div layout="row" class="md-whiteframe-1dp" flex>
-      <label class="md-padding">Title</label>
-      <input type="text" name="Title" ng-model="vm.form.title">
+<div layout-align="center" class="md-whiteframe-1dp" ng-show="vm.addPicture" flex>
+  <form name="createPictureForm">
+      <div layout="column">
+          <md-input-container class="md-block">
+            <label>Title</label>
+            <input required md-no-asterisk name="title" ng-model="vm.form.title">
+            <div ng-messages="createPictureForm.title.$error">
+              <div ng-message="required">This field is required.</div>
+            </div>
+          </md-input-container>
 
-      <label class="md-padding">Description</label>
-      <input type="text" name="Description" ng-model="vm.form.description">
+          <md-input-container class="md-block">
+            <label>Description</label>
+            <input required md-no-asterisk name="description" ng-model="vm.form.description">
+            <div ng-messages="createPictureForm.description.$error">
+              <div ng-message="required">This field is required.</div>
+            </div>
+          </md-input-container>
+      </div>
 
-      <label class="md-padding">Table Type</label>
-      <input type="text" name="table_type" ng-model="vm.form.table_type">
+      <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label for="table_type">What are do you want to attach this picture to?</label>
+            <md-select name="table_type" placeholder="Select Type" ng-model="vm.form.table_type">
+                 <md-option ng-value="type" ng-repeat="type in ['enduser', 'person', 'room', 'floor']">{{ type }}</md-option>
+            </md-select>
+          </md-input-container>
 
-      <label class="md-padding">Type Id</label>
-      <input type="text" name="type_id" ng-model="vm.form.type_id">
+          <md-input-container class="md-block" flex>
+            <label for="type_id">Which one?</label>
+            <md-select ng-disabled="!vm.form.table_type" name="type_id" placeholder="Select item" ng-model="vm.form.type_id" md-on-open="vm.getTheThings()">
+              <md-option ng-value="type.id" ng-repeat="type in vm.typeIdResults">{{ vm.formatValue(type) }}</md-option>
+            </md-select>
+          </md-input-container>
+      </div>
 
-      <img src="{{vm.form.url}}" width="200" height="200">
-      <md-button class="md-primary" id="uploadPhotoBtn">"Upload Picture"</md-button>
-    </div>
-    <md-button class="md-primary" ng-click="vm.submitPicture()" md-ripple-size="full">Submit</md-button>
+      <div layout="row">
+        <md-button class="md-primary" ng-click="vm.upload()" flex="30">Upload Picture</md-button>
+
+        <div style="height:300px; background-color:gray;" flex>
+          <img src="{{vm.form.url}}" height="300px;">
+        </div>
+      </div>
+
+
+      <md-button class="md-primary" ng-click="vm.submitPicture()" md-ripple-size="full">Submit</md-button>
+      <md-button class="md-warn" ng-click="vm.addPicture = false;" md-ripple-size="full">Cancel</md-button>
   </form>
+</div>
+
 <div layout="row">
-  <md-card ng-repeat="picture in vm.pictures" flex="45" >
-      <form name="pictureForm">
-        <img ng-src="{{picture.url}}"  class="md-card-image" alt="cool pic">
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline" ng-if="!picture.edit">{{picture.title}}</span>
-            <md-input-container ng-if="picture.edit" class="md-block">
-              <label>Title</label>
-              <input required md-no-asterisk name="title" ng-model="picture.title">
-              <div ng-messages="pictureForm.title.$error">
-                <div ng-message="required">This field is required.</div>
-              </div>
-            </md-input-container>
+    <md-button ng-click="vm.addPicture = true;" ng-if="!vm.addPicture" class="md-fab" aria-label="Add picture">
+        <md-icon md-svg-src="assets/images/icons/add.svg"></md-icon>
+    </md-button>
 
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-          <p ng-if="!picture.edit">
-            {{picture.description}}
-          </p>
+    <div layout="row" layout-wrap flex>
+      <md-card ng-repeat="picture in vm.pictures" flex="45" >
+          <form name="pictureForm">
+            <img ng-src="{{picture.url}}"  class="md-card-image" alt="cool pic">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline" ng-if="!picture.edit">{{picture.title}}</span>
+                <md-input-container ng-if="picture.edit" class="md-block">
+                  <label>Title</label>
+                  <input required md-no-asterisk name="title" ng-model="picture.title">
+                  <div ng-messages="pictureForm.title.$error">
+                    <div ng-message="required">This field is required.</div>
+                  </div>
+                </md-input-container>
+
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p ng-if="!picture.edit">
+                {{picture.description}}
+              </p>
 
 
-            <md-input-container ng-if="picture.edit" class="md-block">
-              <label>Description</label>
-              <input required md-no-asterisk name="description" ng-model="picture.description">
-              <div ng-messages="pictureForm.description.$error">
-                <div ng-message="required">This field is required.</div>
-              </div>
-            </md-input-container>
-        </md-card-content>
-        <md-card-actions layout="column" layout-align="start">
-          <md-button ng-click="vm.editPicture(picture)" class="md-primary">{{picture.edit ? "Save" : "Edit"}}</md-button>
-          <md-button ng-if="picture.edit" ng-click="picture.edit=false" class="md-warn">Cancel</md-button>
-          <md-button ng-if="!picture.edit" ng-click="vm.deletePicture(picture)" class="md-warn">{{picture.delete ? "Are you Sure?" : "Delete"}}</md-button>
-        </md-card-actions>
-    </form>
-      </md-card>
+                <md-input-container ng-if="picture.edit" class="md-block">
+                  <label>Description</label>
+                  <input required md-no-asterisk name="description" ng-model="picture.description">
+                  <div ng-messages="pictureForm.description.$error">
+                    <div ng-message="required">This field is required.</div>
+                  </div>
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions layout="column" layout-align="start">
+              <md-button ng-click="vm.editPicture(picture)" class="md-primary">{{picture.edit ? "Save" : "Edit"}}</md-button>
+              <md-button ng-if="picture.edit" ng-click="picture.edit=false" class="md-warn">Cancel</md-button>
+              <md-button ng-if="!picture.edit" ng-click="vm.deletePicture(picture)" class="md-warn">{{picture.delete ? "Are you Sure?" : "Delete"}}</md-button>
+            </md-card-actions>
+        </form>
+          </md-card>
+    </div>
 </div>
