@@ -64,6 +64,11 @@
 
 		function createPosition() {
 			if(vm.create){
+				if(angular.isUndefined(vm.form.recurring)) {
+					vm.form.recurring = 0;
+				} else {
+					vm.form.recurring = 1;
+				}
 				dataService.post('position/', vm.form).then(function () {
 					vm.create = false;
 					vm.form = {};
