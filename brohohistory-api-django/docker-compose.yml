@@ -1,0 +1,41 @@
+data:
+  image: silintl/data-volume:latest
+  container_name: broho-data
+  volumes:
+      - ./app:/data
+
+db:
+  image: postgres
+  container_name: broho-db
+  ports:
+    - "5432"
+
+web:
+  container_name: broho-web
+  build: .
+  command: sh bin/run.sh
+  volumes_from:
+    - data
+  volumes:
+    - /tmp:/log
+  links:
+    - db
+  expose:
+    - "9001"
+  env_file:
+    - ./common.env
+    - ./local.env
+
+nginx:
+  container_name: broho-nginx
+  build: build/nginx
+  links:
+    - web:web
+  volumes:
+    - /tmp:/log
+  volumes_from:
+    - data
+  ports:
+    - "80:80"
+  environment:
+    SITE_HOSTNAME: "localhost"

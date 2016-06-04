@@ -12,3 +12,17 @@ BEGIN;
   CREATE TABLE person_position(id serial primary key, person_id int references person(id), position_id int references position(id), description text, start_semester date, end_semester date);
   CREATE TABLE token(id serial primary key, enduser_id int references enduser(id), value text UNIQUE, created_at text not null);
 COMMIT;
+
+
+accounts
+  users
+
+people
+  position
+  person
+
+location
+  floor
+  room
+
+media

@@ -1,0 +1,6 @@
+Django==1.9.6
+gunicorn==19.6.0
+djangorestframework==3.3.2
+factory-boy==2.6.1
+django-extensions==1.6.1
+django-cors-headers==1.1.0
