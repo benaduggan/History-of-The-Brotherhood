@@ -20,7 +20,7 @@ accounts
 people
   position
   person
-
+  
 location
   floor
   room

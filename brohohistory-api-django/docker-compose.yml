@@ -13,7 +13,6 @@ db:
 web:
   container_name: broho-web
   build: .
-  command: sh bin/run.sh
   volumes_from:
     - data
   volumes:

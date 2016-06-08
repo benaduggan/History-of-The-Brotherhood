@@ -25,10 +25,9 @@ SECRET_KEY = 'c-3q%q#0ytm9n&*)wp*an177-9+9504fxw^3j9d8h=9sa#i6ae'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
+
+AUTH_USER_MODEL = 'accounts.Account'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+    'rest_framework.authtoken',
+    'accounts',
+    'rest_api',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,7 +132,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'brohohistoryapi.pagination.DefaultPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_api.pagination.DefaultPagination',
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }

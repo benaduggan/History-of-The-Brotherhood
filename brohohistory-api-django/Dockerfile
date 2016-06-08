@@ -16,6 +16,5 @@ RUN pip install -r requirements.txt
 
 # Copy app files over to container
 COPY app/ /data/
-RUN chmod 777 /data/bin/run.sh
-
-CMD ["/bin/sh", "-c", "/data/bin/run.sh"]
+  
+CMD ["/bin/sh", "-c", "/data/bin/run.sh > /log/python.log 2>&1"]
